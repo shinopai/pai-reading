@@ -66,3 +66,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+# 認証機能
+gem 'devise'
