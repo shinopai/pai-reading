@@ -1,0 +1,16 @@
+<%# スタイル %>
+<%= stylesheet_link_tag 'styles/header' %>
+
+<header class="header">
+  <div class="wrap">
+    <div class="header__inner flex">
+      <%= link_to root_path, class: 'contents' do %>
+      <h1 class="header__title">Book Notes</h1>
+      <% end %>
+      <div class="header__actions flex">
+        <%= link_to 'ログイン', new_user_session_path, class: 'header__link' %>
+        <%= link_to '新規作成', new_user_registration_path, class: 'header__link' %>
+      </div>
+    </div>
+  </div>
+</header>

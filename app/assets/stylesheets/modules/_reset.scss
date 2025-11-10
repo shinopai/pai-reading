@@ -1,0 +1,45 @@
+body,
+html {
+  height: 100%;
+  font-family: "Abhaya Libre", serif;
+  font-family: "Alegreya Sans SC", sans-serif;
+  font-family: "Alexandria", sans-serif;
+}
+
+* {
+  line-height: 1.5;
+  box-sizing: border-box;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  vertical-align: bottom;
+  display: block;
+}
+
+table {
+  width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}

@@ -1,0 +1,38 @@
+@use "../modules/mixins" as m;
+
+/* ヘッダースタイル */
+
+.header {
+  background-color: #269bf4;
+  padding: 10px 0;
+}
+.header__inner {
+  justify-content: space-between;
+  align-items: center;
+}
+.header__title {
+  @include m.font-set(20) {
+    font-weight: bold;
+  }
+  color: #fff;
+  position: relative;
+  padding-left: 0.8em;
+  &::before {
+    font-family: "Font Awesome 7 Free";
+    font-size: 0.7em;
+    font-weight: 900;
+    content: "\f02d";
+    position: absolute;
+    left: 0;
+    bottom: 0.1em;
+  }
+  @include m.link-hover-behavior;
+}
+.header__actions {
+  @include m.font-set(16);
+  column-gap: 1em;
+}
+.header__link {
+  color: #fff;
+  @include m.link-hover-behavior;
+}

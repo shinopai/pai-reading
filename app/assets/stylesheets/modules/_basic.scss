@@ -1,0 +1,16 @@
+/* 基本width */
+.wrap {
+  width: min(100%, 1440px);
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+/* flexbox */
+.flex {
+  display: flex;
+}
+
+/* 要素の非ボックス化 */
+.contents {
+  display: contents;
+}
