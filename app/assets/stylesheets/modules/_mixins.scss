@@ -52,3 +52,10 @@
     color: #d9d9d9;
   }
 }
+
+/* ボタンホバー時挙動 */
+@mixin button-hover-behavior {
+  &:hover {
+    opacity: 0.8;
+  }
+}

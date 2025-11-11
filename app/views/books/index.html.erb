@@ -1,0 +1,42 @@
+<%# スタイル %>
+<%= stylesheet_link_tag 'styles/book' %>
+
+<% @dammy_text = "ダミーダミーダミータイトルダミーダミーダミータイトル" %>
+<% @dammy_author = "ダミーダミーダミータイトルダミー著者" %>
+
+<div class="book main">
+  <div class="wrap">
+    <div class="book__form-wrap">
+      <%= form_with url: root_path, method: :get, local: true, class: 'book__form' do |form| %>
+      <%= form.text_field :search, class: 'book__textfield', placeholder: '本を検索する' %>
+      <%= button_tag type: "submit", class: "book__submit" do %>
+      <i class="fa-solid fa-magnifying-glass" style="color: #269bf4;"></i>
+      <% end %>
+      <% end %>
+    </div>
+    <%= link_to '本を追加する', '###', class: 'book__button' %>
+    <div class="book__list flex">
+      <%= link_to root_path, class: 'contents' do %>
+      <div class="book__card">
+        <%= image_tag 'dammy_book.webp', class: 'book__image' %>
+        <h3 class="book__title"><%= @dammy_text.truncate(15) %></h3>
+        <p class="book__author"><%= @dammy_author.truncate(10) %></p>
+      </div>
+      <% end %>
+      <%= link_to root_path, class: 'contents' do %>
+      <div class="book__card">
+        <%= image_tag 'dammy_book.webp', class: 'book__image' %>
+        <h3 class="book__title"><%= @dammy_text.truncate(15) %></h3>
+        <p class="book__author"><%= @dammy_author.truncate(10) %></p>
+      </div>
+      <% end %>
+      <%= link_to root_path, class: 'contents' do %>
+      <div class="book__card">
+        <%= image_tag 'dammy_book.webp', class: 'book__image' %>
+        <h3 class="book__title"><%= @dammy_text.truncate(15) %></h3>
+        <p class="book__author"><%= @dammy_author.truncate(10) %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

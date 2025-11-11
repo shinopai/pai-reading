@@ -1,3 +1,5 @@
 Rails.application.config.dartsass.builds = {
-  "styles/header.scss" => "styles/header.css"
+  "application.scss" => "application.css",
+  "styles/header.scss" => "styles/header.css",
+  "styles/book.scss" => "styles/book.css"
 }
