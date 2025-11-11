@@ -1,3 +1,5 @@
+@use "mixins" as m;
+
 /* 基本width */
 .wrap {
   width: min(100%, 1440px);
@@ -18,4 +20,28 @@
 /* メイン部分スタイル */
 .main {
   padding-top: 50px;
+}
+
+/* 基本ボタンスタイル */
+.basic-button {
+  width: min(100%, 200px);
+  height: 35px;
+  background-color: #269bf4;
+  @include m.font-set(16);
+  color: #fff;
+  border-radius: 0.5em;
+  margin: 3em auto 0;
+  @include m.centering;
+  box-shadow: 0 4px 1px rgb(71, 111, 123);
+  @include m.button-hover-behavior;
+}
+
+/* 基本リンクスタイル */
+.basic-link {
+  @include m.font-set(16);
+  color: #3e1dcd;
+  text-decoration: underline;
+  width: fit-content;
+  text-underline-offset: 2px;
+  margin: 1em auto 0;
 }

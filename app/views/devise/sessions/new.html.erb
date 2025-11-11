@@ -1,26 +1,33 @@
-<h2>Log in</h2>
+<%# スタイル %>
+<%= stylesheet_link_tag 'styles/auth' %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="auth main">
+  <div class="wrap">
+    <h2 class="auth__heading">ログイン</h2>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "auth__form" }) do |f| %>
+    <div class="auth__item">
+      <%= f.label :email, 'Eメール', class: 'auth__label' %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'auth__input' %>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="auth__item">
+      <%= f.label :password, 'パスワード', class: 'auth__label' %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class: 'auth__input' %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+    <div class="auth__item center">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me, 'ログインを記憶する' %>
+    </div>
+    <% end %>
+
+    <div class="auth__item">
+      <%= f.submit "ログイン", class: 'auth__submit basic-button' %>
+    </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
