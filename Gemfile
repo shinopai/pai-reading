@@ -69,3 +69,7 @@ end
 
 # 認証機能
 gem 'devise'
+
+# deviseの日本語化
+gem 'devise-i18n'
+gem 'devise-i18n-views'

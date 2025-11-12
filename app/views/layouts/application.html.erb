@@ -28,11 +28,17 @@
 </head>
 
 <body>
-  <%# header %>
+  <%# ヘッダー %>
   <%= render 'partials/header' %>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <%# フラッシュメッセージ %>
+  <% if flash[:notice] %>
+  <p class="flash-message notice"><%= notice %></p>
+  <% end %>
+
+  <% if flash[:alert] %>
+  <p class="flash-message alert"><%= alert %></p>
+  <% end %>
 
   <%= yield %>
 </body>

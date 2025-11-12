@@ -8,8 +8,13 @@
       <h1 class="header__title">Book Notes</h1>
       <% end %>
       <div class="header__actions flex">
+        <% if user_signed_in? %>
+        <%= link_to current_user.name, new_user_session_path, class: 'header__link' %>
+        <%= link_to 'ログアウト', destroy_user_session_path, class: 'header__link' %>
+        <% else %>
         <%= link_to 'ログイン', new_user_session_path, class: 'header__link' %>
         <%= link_to '新規作成', new_user_registration_path, class: 'header__link' %>
+        <% end %>
       </div>
     </div>
   </div>
