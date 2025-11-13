@@ -3,6 +3,7 @@
 
 <div class="auth main">
   <div class="wrap">
+    <%= link_to 'ゲストでログイン', guest_session_path, data: { "turbo-method": :post }, class: 'auth__link--guest' %>
     <h2 class="auth__heading">ログイン</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "auth__form" }) do |f| %>

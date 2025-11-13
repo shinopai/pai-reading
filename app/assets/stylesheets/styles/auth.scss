@@ -42,3 +42,18 @@
   border: none;
   cursor: pointer;
 }
+.auth__link--guest {
+  @include m.font-set(16);
+  width: fit-content;
+  margin-left: auto;
+  position: relative;
+  &::before {
+    content: "\f2f6";
+    font-family: "Font Awesome 7 Free";
+    font-weight: 900;
+    position: absolute;
+    left: -1.5em;
+    top: 1px;
+  }
+  @include m.link-hover-behavior;
+}

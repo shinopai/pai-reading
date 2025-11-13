@@ -21,4 +21,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "books#index"
+
+  # ゲストログイン
+  post	'/users/guest_sign_in', to: 'guests#guest_sign_in', as: :guest_session
 end
