@@ -4,6 +4,8 @@ class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:create]
 
   def index
+    @books = Book.all
+
     render :index
   end
 

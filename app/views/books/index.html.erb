@@ -16,26 +16,25 @@
     </div>
     <%= link_to '本を追加する', new_book_path, class: 'book__button basic-button' %>
     <div class="book__list flex">
+      <% if @books.any? %>
+      <% @books.each do |book| %>
       <%= link_to root_path, class: 'contents' do %>
       <div class="book__card">
-        <%= image_tag 'dammy_book.webp', class: 'book__image' %>
-        <h3 class="book__title"><%= @dammy_text.truncate(15) %></h3>
-        <p class="book__author"><%= @dammy_author.truncate(10) %></p>
+        <%= image_tag book.image_link, class: 'book__image' %>
+        <h3 class="book__title"><%= book.title.truncate(15) %></h3>
+        <p class="book__author">
+          <% if book.authors.any? %>
+          <% book.authors.each_with_index do |value, index| %>
+          <% break if index > 0 %>
+          <%= value.name %><% '他' if book.authors.size > 1 %>
+          <% end %>
+          <% end %>
+        </p>
       </div>
       <% end %>
-      <%= link_to root_path, class: 'contents' do %>
-      <div class="book__card">
-        <%= image_tag 'dammy_book.webp', class: 'book__image' %>
-        <h3 class="book__title"><%= @dammy_text.truncate(15) %></h3>
-        <p class="book__author"><%= @dammy_author.truncate(10) %></p>
-      </div>
       <% end %>
-      <%= link_to root_path, class: 'contents' do %>
-      <div class="book__card">
-        <%= image_tag 'dammy_book.webp', class: 'book__image' %>
-        <h3 class="book__title"><%= @dammy_text.truncate(15) %></h3>
-        <p class="book__author"><%= @dammy_author.truncate(10) %></p>
-      </div>
+      <% else %>
+      <p class="book__text">登録されている書籍はありません</p>
       <% end %>
     </div>
   </div>
