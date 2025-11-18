@@ -71,3 +71,29 @@
     background-color: #00d05e;
   }
 }
+
+/* 基本検索フォーム */
+.basic-form {
+  position: relative;
+}
+.basic-textfield {
+  width: 100%;
+  height: 38px;
+  border: 1.5px solid #ababab;
+  @include m.font-set(16) {
+    font-weight: bold;
+  }
+  color: #ababab;
+  padding: 0 0.5em;
+  &:focus {
+    outline: none;
+  }
+}
+.basic-submit-button {
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 24px / 2);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

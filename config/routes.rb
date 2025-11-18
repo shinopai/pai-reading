@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     post	'/users/sign_in', to: 'users/sessions#create', as: :user_session
     get	'/users/sign_out', to: 'users/sessions#destroy', as: :destroy_user_session
   end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -22,6 +21,17 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "books#index"
 
+  # books
+  resources :books, except: [:index] do
+    collection do
+      get :search
+      get :keyword
+    end
+  end
+
   # ゲストログイン
   post	'/users/guest_sign_in', to: 'guests#guest_sign_in', as: :guest_session
+
+  # マイページ
+  resources :mypages, :path => "mypage"
 end

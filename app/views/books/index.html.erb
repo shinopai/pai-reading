@@ -7,14 +7,14 @@
 <div class="book main">
   <div class="wrap">
     <div class="book__form-wrap">
-      <%= form_with url: root_path, method: :get, local: true, class: 'book__form' do |form| %>
-      <%= form.text_field :search, class: 'book__textfield', placeholder: '本を検索する' %>
-      <%= button_tag type: "submit", class: "book__submit" do %>
+      <%= form_with url: root_path, method: :get, local: true, class: 'basic-form' do |form| %>
+      <%= form.text_field :search, class: 'basic-textfield', placeholder: '本を検索する' %>
+      <%= button_tag type: "submit", class: "basic-submit-button" do %>
       <i class="fa-solid fa-magnifying-glass" style="color: #269bf4;"></i>
       <% end %>
       <% end %>
     </div>
-    <%= link_to '本を追加する', '###', class: 'book__button basic-button' %>
+    <%= link_to '本を追加する', new_book_path, class: 'book__button basic-button' %>
     <div class="book__list flex">
       <%= link_to root_path, class: 'contents' do %>
       <div class="book__card">

@@ -1,0 +1,102 @@
+<%# スタイル %>
+<%= stylesheet_link_tag 'styles/book' %>
+
+<div class="book-new main">
+  <div class="wrap">
+    <h2 class="book-new__heading">登録したい本を検索しましょう</h2>
+    <div class="book-new__form-wrap">
+      <%= form_with url: keyword_books_path, method: :get, local: true, class: 'basic-form' do |form| %>
+      <%= form.text_field :q, class: 'basic-textfield', placeholder: 'キーワードで検索する' %>
+      <%= button_tag type: "submit", :name => nil, class: "basic-submit-button" do %>
+      <i class="fa-solid fa-magnifying-glass" style="color: #269bf4;"></i>
+      <% end %>
+      <% end %>
+    </div>
+
+    <% if @books.present? %>
+    <div class="book-new__list">
+      <% @books.each do |book| %>
+      <div class="book-new__card flex">
+        <figure class="book-new__card-image">
+          <%= image_tag google_book_thumbnail(book) %>
+        </figure>
+        <div class="book-new__card-detail">
+          <h3 class="book-new__card-title">
+            <%= book['volumeInfo']['title'].truncate(50) %>
+          </h3>
+          <ul class="book-new__card-authors flex">
+            <% if !book['volumeInfo']['authors'].nil? %>
+            <% book['volumeInfo']['authors'].each_with_index do |author, index| %>
+            <li class="book-new__card-authors-item">
+              <% if index == book['volumeInfo']['authors'].size - 1 %>
+              <%= author %>
+              <% else %>
+              <%= author %>,&nbsp;
+              <% end %>
+            </li>
+            <% end %>
+            <% else %>
+            <li class="book-new__card-authors-item">著者なし</li>
+            <% end %>
+          </ul>
+          <div class="book-new__card-publisher">
+            <%= book['volumeInfo']['publisher'] %>
+          </div>
+          <button type="button" class="book-new__card-button basic-button">登録</button>
+          <dialog class="book-new__dialog">
+            <div class="book-new__dialog-inner">
+              <div class="book-new__dialog-head flex">
+                <figure class="book-new__dialog-image">
+                  <%= image_tag google_book_thumbnail(book) %>
+                </figure>
+                <div class="book-new__dialog-detail">
+                  <h3 class="book-new__dialog-title">
+                    <%= book['volumeInfo']['title'].truncate(50) %>
+                  </h3>
+                  <ul class="book-new__dialog-authors flex">
+                    <% if !book['volumeInfo']['authors'].nil? %>
+                    <% book['volumeInfo']['authors'].each_with_index do |author, index| %>
+                    <li class="book-new__dialog-authors-item">
+                      <% if index == book['volumeInfo']['authors'].size - 1 %>
+                      <%= author %>
+                      <% else %>
+                      <%= author %>,&nbsp;
+                      <% end %>
+                    </li>
+                    <% end %>
+                    <% else %>
+                    <li class="book-new__dialog-authors-item">著者なし</li>
+                    <% end %>
+                  </ul>
+                  <div class="book-new__dialog-publisher">
+                    <%= book['volumeInfo']['publisher'] %>
+                  </div>
+                </div>
+              </div>
+              <%= form_with model: @book, url: books_path, class: 'book-new__dialog-form', local: :true do |book_f| %>
+              <%= book_f.hidden_field :title, value: book['volumeInfo']['title'] %>
+              <%= book_f.hidden_field :image_link, value: google_book_thumbnail(book) %>
+              <%= book_f.hidden_field :info_link, value: book['volumeInfo']['infoLink'] %>
+              <%= book_f.hidden_field :systemid, value: book['volumeInfo']['industryIdentifiers'][0]['identifier'] %>
+              <%= book_f.hidden_field :published_date, value: book['volumeInfo']['publishedDate'] %>
+              <%= hidden_field_tag 'authors', book['volumeInfo']['authors'].to_json %>
+              <%= label_tag :status, '選択してください', class: 'book-new__dialog-label' %>
+              <%= book_f.select :status, options_for_select([["これから読む", 0], ["今読んでいる", 1], ["読み終わった", 2]], selected: 0), options = { include_blank: false }, class: 'book-new__dialog-select' %>
+              <div class="book-new__dialog-buttons flex">
+                <button type="button" class="book-new__dialog-button basic-button cancel">キャンセル</button>
+                <%= book_f.submit '登録', class: 'book-new__dialog-button basic-button add' %>
+              </div>
+              <% end %>
+            </div>
+          </dialog>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
+
+  </div>
+</div>
+
+<%# スクリプト %>
+<%= javascript_importmap_tags "book" %>

@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # リレーション
+  has_many :books
+
   # nameのバリデーション
   validates :name, presence: true,
              length: { maximum: 30 },

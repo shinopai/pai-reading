@@ -1,32 +1,9 @@
 @use "../modules/mixins" as m;
 
+/* トップページ */
 .book__form-wrap {
   width: min(100%, 450px);
   margin: 0 auto;
-}
-.book__form {
-  position: relative;
-}
-.book__textfield {
-  width: 100%;
-  height: 38px;
-  border: 1.5px solid #ababab;
-  @include m.font-set(16) {
-    font-weight: bold;
-  }
-  color: #ababab;
-  padding: 0 0.5em;
-  &:focus {
-    outline: none;
-  }
-}
-.book__submit {
-  position: absolute;
-  right: 10px;
-  top: calc(50% - 24px / 2);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
 }
 .book__button {
   width: min(100%, 200px);
@@ -64,4 +41,122 @@
     font-weight: bold;
   }
   color: #269bf4;
+}
+
+/* 本を追加する */
+.book-new__heading {
+  @include m.font-set(20);
+  text-align: center;
+}
+.book-new__form-wrap {
+  width: min(100%, 550px);
+  margin: 50px auto 0;
+}
+.book-new__list {
+  width: min(100%, 550px);
+  margin: 50px auto 0;
+}
+.book-new__card {
+  padding: 30px 0;
+  border-bottom: 1.5px solid #ababab;
+}
+.book-new__card-image {
+  width: 30%;
+  img {
+    max-width: 75%;
+    aspect-ratio: 123/160;
+  }
+}
+.book-new__card-detail {
+  width: 70%;
+  position: relative;
+}
+.book-new__card-title {
+  @include m.font-set(18);
+  color: #269bf4;
+}
+.book-new__card-authors,
+.book-new__card-publisher {
+  @include m.font-set(14);
+  color: #269bf4;
+}
+.book-new__card-authors {
+  flex-wrap: wrap;
+}
+.book-new__card-authors-item {
+  color: #269bf4;
+}
+.book-new__card-button {
+  border: none;
+  width: min(100%, 65px);
+  margin: 1em 0 0 auto;
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+.book-new__dialog {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: min(100%, 450px);
+  border: none;
+}
+.book-new__dialog-inner {
+  padding: 30px;
+}
+.book-new__dialog-head {
+  justify-content: space-between;
+}
+.book-new__dialog-image {
+  width: 30%;
+  aspect-ratio: 117/165;
+}
+.book-new__dialog-detail {
+  width: 65%;
+}
+.book-new__dialog-title {
+  @include m.font-set(18);
+  color: #269bf4;
+}
+.book-new__dialog-authors,
+.book-new__dialog-publisher {
+  @include m.font-set(14);
+  color: #269bf4;
+}
+.book-new__dialog-authors-item {
+  color: #269bf4;
+}
+.book-new__dialog-form {
+  margin-top: 15px;
+}
+.book-new__dialog-label {
+  @include m.font-set(16) {
+    font-weight: bold;
+  }
+  display: block;
+  text-align: center;
+}
+.book-new__dialog-select {
+  width: 100%;
+  @include m.font-set(14);
+  padding: 0.4em;
+  border-radius: 5px;
+  border: 1px solid #ababab;
+  margin-top: 0.5em;
+}
+.book-new__dialog-buttons {
+  justify-content: space-between;
+  margin-top: 25px;
+}
+.book-new__dialog-button {
+  width: 45%;
+  height: 40px;
+  margin: 0;
+  cursor: pointer;
+  border: none;
+  &.cancel {
+    background-color: #757575;
+  }
 }

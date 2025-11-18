@@ -73,3 +73,6 @@ gem 'devise'
 # deviseの日本語化
 gem 'devise-i18n'
 gem 'devise-i18n-views'
+
+# API通信のコードを簡略化
+gem 'faraday'
