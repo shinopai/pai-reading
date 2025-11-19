@@ -18,7 +18,7 @@
     <div class="book__list flex">
       <% if @books.any? %>
       <% @books.each do |book| %>
-      <%= link_to root_path, class: 'contents' do %>
+      <%= link_to book.info_link, class: 'contents', target: :_blank do %>
       <div class="book__card">
         <%= image_tag book.image_link, class: 'book__image' %>
         <h3 class="book__title"><%= book.title.truncate(15) %></h3>

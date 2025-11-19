@@ -59,6 +59,9 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+
+  # テストデータ作成
+  gem 'faker'
 end
 
 group :test do

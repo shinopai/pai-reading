@@ -127,6 +127,8 @@ GEM
     erubi (1.13.1)
     et-orbi (1.4.0)
       tzinfo
+    faker (3.5.2)
+      i18n (>= 1.8.11, < 2)
     faraday (2.14.0)
       faraday-net_http (>= 2.0, < 3.5)
       json
@@ -397,6 +399,7 @@ DEPENDENCIES
   devise
   devise-i18n
   devise-i18n-views
+  faker
   faraday
   image_processing (~> 1.2)
   importmap-rails

@@ -84,7 +84,11 @@
               <%= book_f.select :status, options_for_select([["これから読む", 0], ["今読んでいる", 1], ["読み終わった", 2]], selected: 0), options = { include_blank: false }, class: 'book-new__dialog-select' %>
               <div class="book-new__dialog-buttons flex">
                 <button type="button" class="book-new__dialog-button basic-button cancel">キャンセル</button>
+                <% if user_signed_in? && check_registered_book(current_user, book['volumeInfo']['industryIdentifiers'][0]['identifier']) %>
+                <%= link_to '登録済', mypages_path, class: 'book-new__dialog-button basic-button add' %>
+                <% else %>
                 <%= book_f.submit '登録', class: 'book-new__dialog-button basic-button add' %>
+                <% end %>
               </div>
               <% end %>
             </div>

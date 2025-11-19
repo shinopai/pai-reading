@@ -15,4 +15,9 @@ module ApplicationHelper
      #volumeInfoの中が必要な項目のみになるようsliceを使って絞りこむ
     google_book['volumeInfo'].slice('title', 'authors', 'publishedDate', 'infoLink', 'bookImage', 'systemid', 'canonicalVolumeLink')
   end
+
+  # ユーザーがその書籍を登録済かどうか判定
+  def check_registered_book(user, id)
+    user.books.exists?(systemid: id)
+  end
 end
