@@ -22,10 +22,11 @@ Rails.application.routes.draw do
   root "books#index"
 
   # books
-  resources :books, except: [:index] do
+  resources :books, except: [:index, :update] do
     collection do
       get :search
       get :keyword
+      patch :update_status
     end
   end
 

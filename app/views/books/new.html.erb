@@ -1,6 +1,11 @@
 <%# スタイル %>
 <%= stylesheet_link_tag 'styles/book' %>
 
+<%# スクリプト %>
+<% content_for :js do %>
+<%= javascript_import_module_tag "book" %>
+<% end %>
+
 <div class="book-new main">
   <div class="wrap">
     <h2 class="book-new__heading">登録したい本を検索しましょう</h2>
@@ -43,8 +48,8 @@
             <%= book['volumeInfo']['publisher'] %>
           </div>
           <button type="button" class="book-new__card-button basic-button">登録</button>
-          <dialog class="book-new__dialog">
-            <div class="book-new__dialog-inner">
+          <dialog class="book-new__dialog basic-dialog">
+            <div class="book-new__dialog-inner basic-dialog__inner">
               <div class="book-new__dialog-head flex">
                 <figure class="book-new__dialog-image">
                   <%= image_tag google_book_thumbnail(book) %>
@@ -101,6 +106,3 @@
 
   </div>
 </div>
-
-<%# スクリプト %>
-<%= javascript_importmap_tags "book" %>

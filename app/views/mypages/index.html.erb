@@ -1,1 +1,186 @@
-<h1><%= @user.name %>のマイページ</h1>
+<%# スタイル %>
+<%= stylesheet_link_tag 'styles/mypage' %>
+
+<%# スクリプト %>
+<% content_for :js do %>
+ <%= javascript_import_module_tag "mypage" %>
+ <% end %>
+
+<div class="mypage main">
+  <div class="wrap">
+    <div class="mypage__box">
+      <h3 class="mypage__heading--small"><%= @user.name %></h3>
+      <div class="mypage__data flex">
+        <div class="mypage__data-item">
+          <p class="mypage__data-number"><%= @books_finished.size %></p>
+          <p class="mypage__data-label">読んだ本</p>
+        </div>
+        <div class="mypage__data-item">
+          <p class="mypage__data-number">0</p>
+          <p class="mypage__data-label">書いたノート</p>
+        </div>
+        <div class="mypage__data-item">
+          <p class="mypage__data-number">0</p>
+          <p class="mypage__data-label">いいね</p>
+        </div>
+      </div>
+    </div>
+    <div class="mypage__box second">
+      <h2 class="mypage__heading">アクションプラン一覧</h2>
+      <p class="mypage__text">アクションプランはありません</p>
+    </div>
+    <%= link_to "本を追加する", new_book_path, class: 'mypage__button basic-button' %>
+    <div class="mypage__status">
+      <div class="mypage__tabs flex">
+        <div class="mypage__tab active" data-id="0">全て</div>
+        <div class="mypage__tab" data-id="1">読み終わった</div>
+        <div class="mypage__tab" data-id="2">いま読んでいる</div>
+        <div class="mypage__tab" data-id="3">まだ読んでない</div>
+      </div>
+      <div class="mypage__list flex active" id="xList0">
+        <% if @books.any? %>
+        <% @books.each do |book| %>
+        <figure class="mypage__card">
+          <%= link_to book.info_link, class: 'contents', target: 'blank' do %>
+          <%= image_tag book.image_link, class: 'mypage__image' %>
+          <h3 class="mypage__title"><%= book.title.truncate(20) %></h3>
+          <p class="mypage__author">
+          <% if book.authors.any? %>
+          <% book.authors.each_with_index do |value, index| %>
+          <% break if index > 0 %>
+          <%= value.name %><% '他' if book.authors.size > 1 %>
+          <% end %>
+          <% end %>
+          </p>
+          <% end %>
+          <button class="mypage__button--status">ステータス変更</button>
+          <dialog class="mypage__dialog basic-dialog">
+            <div class="mypage__dialog-inner basic-dialog__inner">
+              <%= form_with model: book, url: update_status_books_path, class: 'mypage__dialog-form', local: :true do |book_f| %>
+              <%= hidden_field_tag :book_id, book.id %>
+              <%= book_f.label :status, '選択してください', class: 'mypage__dialog-label' %>
+              <%= book_f.select :status, options_for_select([["これから読む", 0], ["今読んでいる", 1], ["読み終わった", 2]], :selected => book.status_before_type_cast), options = { include_blank: false }, class: 'mypage__dialog-select' %>
+              <div class="mypage__dialog-buttons flex">
+                <button type="button" class="mypage__dialog-button basic-button cancel">キャンセル</button>
+                <%= book_f.submit '更新', class: 'mypage__dialog-button basic-button update' %>
+              </div>
+              <% end %>
+            </div>
+          </dialog>
+        </figure>
+        <% end %>
+        <% else %>
+          <p class="mypage__text">登録済の書籍はありません</p>
+        <% end %>
+      </div>
+      <div class="mypage__list flex" id="xList1">
+        <% if @books_finished.any? %>
+        <% @books_finished.each do |book| %>
+        <figure class="mypage__card">
+          <%= link_to book.info_link, class: 'contents', target: 'blank' do %>
+          <%= image_tag book.image_link, class: 'mypage__image' %>
+          <h3 class="mypage__title"><%= book.title.truncate(20) %></h3>
+          <p class="mypage__author">
+          <% if book.authors.any? %>
+          <% book.authors.each_with_index do |value, index| %>
+          <% break if index > 0 %>
+          <%= value.name %><% '他' if book.authors.size > 1 %>
+          <% end %>
+          <% end %>
+          </p>
+          <% end %>
+          <button class="mypage__button--status">ステータス変更</button>
+          <dialog class="mypage__dialog basic-dialog">
+            <div class="mypage__dialog-inner basic-dialog__inner">
+              <%= form_with model: book, url: update_status_books_path, class: 'mypage__dialog-form', local: :true do |book_f| %>
+              <%= hidden_field_tag :book_id, book.id %>
+              <%= book_f.label :status, '選択してください', class: 'mypage__dialog-label' %>
+              <%= book_f.select :status, options_for_select([["これから読む", 0], ["今読んでいる", 1], ["読み終わった", 2]], :selected => book.status_before_type_cast), options = { include_blank: false }, class: 'mypage__dialog-select' %>
+              <div class="mypage__dialog-buttons flex">
+                <button type="button" class="mypage__dialog-button basic-button cancel">キャンセル</button>
+                <%= book_f.submit '更新', class: 'mypage__dialog-button basic-button update' %>
+              </div>
+              <% end %>
+            </div>
+          </dialog>
+        </figure>
+        <% end %>
+        <% else %>
+          <p class="mypage__text">登録済の書籍はありません</p>
+        <% end %>
+      </div>
+      <div class="mypage__list flex" id="xList2">
+        <% if @books_reading.any? %>
+        <% @books_reading.each do |book| %>
+        <figure class="mypage__card">
+          <%= link_to book.info_link, class: 'contents', target: 'blank' do %>
+          <%= image_tag book.image_link, class: 'mypage__image' %>
+          <h3 class="mypage__title"><%= book.title.truncate(20) %></h3>
+          <p class="mypage__author">
+          <% if book.authors.any? %>
+          <% book.authors.each_with_index do |value, index| %>
+          <% break if index > 0 %>
+          <%= value.name %><% '他' if book.authors.size > 1 %>
+          <% end %>
+          <% end %>
+          </p>
+          <% end %>
+          <button class="mypage__button--status">ステータス変更</button>
+          <dialog class="mypage__dialog basic-dialog">
+            <div class="mypage__dialog-inner basic-dialog__inner">
+              <%= form_with model: book, url: update_status_books_path, class: 'mypage__dialog-form', local: :true do |book_f| %>
+              <%= hidden_field_tag :book_id, book.id %>
+              <%= book_f.label :status, '選択してください', class: 'mypage__dialog-label' %>
+              <%= book_f.select :status, options_for_select([["これから読む", 0], ["今読んでいる", 1], ["読み終わった", 2]], :selected => book.status_before_type_cast), options = { include_blank: false }, class: 'mypage__dialog-select' %>
+              <div class="mypage__dialog-buttons flex">
+                <button type="button" class="mypage__dialog-button basic-button cancel">キャンセル</button>
+                <%= book_f.submit '更新', class: 'mypage__dialog-button basic-button update' %>
+              </div>
+              <% end %>
+            </div>
+          </dialog>
+        </figure>
+        <% end %>
+        <% else %>
+          <p class="mypage__text">登録済の書籍はありません</p>
+        <% end %>
+      </div>
+      <div class="mypage__list flex" id="xList3">
+        <% if @books_now.any? %>
+        <% @books_now.each do |book| %>
+        <figure class="mypage__card">
+          <%= link_to book.info_link, class: 'contents', target: 'blank' do %>
+          <%= image_tag book.image_link, class: 'mypage__image' %>
+          <h3 class="mypage__title"><%= book.title.truncate(20) %></h3>
+          <p class="mypage__author">
+          <% if book.authors.any? %>
+          <% book.authors.each_with_index do |value, index| %>
+          <% break if index > 0 %>
+          <%= value.name %><% '他' if book.authors.size > 1 %>
+          <% end %>
+          <% end %>
+          </p>
+          <% end %>
+          <button class="mypage__button--status">ステータス変更</button>
+          <dialog class="mypage__dialog basic-dialog">
+            <div class="mypage__dialog-inner basic-dialog__inner">
+              <%= form_with model: book, url: update_status_books_path, class: 'mypage__dialog-form', local: :true do |book_f| %>
+              <%= hidden_field_tag :book_id, book.id %>
+              <%= book_f.label :status, '選択してください', class: 'mypage__dialog-label' %>
+              <%= book_f.select :status, options_for_select([["これから読む", 0], ["今読んでいる", 1], ["読み終わった", 2]], :selected => book.status_before_type_cast), options = { include_blank: false }, class: 'mypage__dialog-select' %>
+              <div class="mypage__dialog-buttons flex">
+                <button type="button" class="mypage__dialog-button basic-button cancel">キャンセル</button>
+                <%= book_f.submit '更新', class: 'mypage__dialog-button basic-button update' %>
+              </div>
+              <% end %>
+            </div>
+          </dialog>
+        </figure>
+        <% end %>
+        <% else %>
+          <p class="mypage__text">登録済の書籍はありません</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

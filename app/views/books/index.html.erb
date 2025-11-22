@@ -1,9 +1,6 @@
 <%# スタイル %>
 <%= stylesheet_link_tag 'styles/book' %>
 
-<% @dammy_text = "ダミーダミーダミータイトルダミーダミーダミータイトル" %>
-<% @dammy_author = "ダミーダミーダミータイトルダミー著者" %>
-
 <div class="book main">
   <div class="wrap">
     <div class="book__form-wrap">
@@ -19,7 +16,7 @@
       <% if @books.any? %>
       <% @books.each do |book| %>
       <%= link_to book.info_link, class: 'contents', target: :_blank do %>
-      <div class="book__card">
+      <figure class="book__card">
         <%= image_tag book.image_link, class: 'book__image' %>
         <h3 class="book__title"><%= book.title.truncate(15) %></h3>
         <p class="book__author">
@@ -30,7 +27,7 @@
           <% end %>
           <% end %>
         </p>
-      </div>
+      </figure>
       <% end %>
       <% end %>
       <% else %>

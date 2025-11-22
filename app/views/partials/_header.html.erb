@@ -9,7 +9,7 @@
       <% end %>
       <div class="header__actions flex">
         <% if user_signed_in? %>
-        <%= link_to current_user.name, new_user_session_path, class: 'header__link' %>
+        <%= link_to current_user.name, mypages_path, class: 'header__link' %>
         <%= link_to 'ログアウト', destroy_user_session_path, class: 'header__link' %>
         <% else %>
         <%= link_to 'ログイン', new_user_session_path, class: 'header__link' %>

@@ -1,5 +1,5 @@
 // ダイアログを開くボタン群を取得
-let dialogButtons = document.getElementsByClassName("book-new__card-button");
+const dialogButtons = document.getElementsByClassName("book-new__card-button");
 
 // 各ボタンをクリックした時の挙動
 for (let i = 0; i < dialogButtons.length; i++) {
@@ -9,7 +9,7 @@ for (let i = 0; i < dialogButtons.length; i++) {
 }
 
 // ダイアログを閉じるボタン群を取得
-let cancelButtons = document.getElementsByClassName("cancel");
+const cancelButtons = document.getElementsByClassName("cancel");
 
 // 各ボタンをクリックした時の挙動
 for (let i = 0; i < cancelButtons.length; i++) {

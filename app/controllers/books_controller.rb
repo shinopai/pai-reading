@@ -1,11 +1,10 @@
 require 'json'
 
 class BooksController < ApplicationController
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:create, :update_status]
+  before_action :get_books, only: [:index, :update_status]
 
   def index
-    @books = Book.all
-
     render :index
   end
 
@@ -67,9 +66,23 @@ class BooksController < ApplicationController
     redirect_to mypages_path
   end
 
+  def update_status
+    book = Book.find(params[:book_id])
+
+    if book.update(status: book_params[:status].to_i)
+      redirect_to mypages_path, notice: 'ステータスを更新しました'
+    else
+      render :index, alert: 'ステータスの更新に失敗しました'
+    end
+  end
+
   # private
   private
   def book_params
     params.require(:book).permit(:title, :image_link, :info_link, :systemid, :published_date, :status)
+  end
+
+  def get_books
+    @books = Book.all
   end
 end

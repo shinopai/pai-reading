@@ -1,0 +1,131 @@
+@use "../modules/mixins" as m;
+@use "../modules/basic" as b;
+
+/* マイページ */
+.mypage__box {
+  background-color: #f9f9f9;
+  border: 1px solid b.$color-gray;
+  border-radius: 5px;
+  padding: 20px;
+  &.second {
+    margin-top: 20px;
+  }
+}
+.mypage__heading--small {
+  @include m.font-set(16);
+  text-align: center;
+}
+.mypage__data {
+  margin-top: 30px;
+  justify-content: center;
+  gap: 50px;
+}
+.mypage__data-item {
+  text-align: center;
+}
+.mypage__data-number {
+  @include m.font-set(16) {
+    font-weight: bold;
+  }
+}
+.mypage__data-label {
+  @include m.font-set(14) {
+    font-weight: bold;
+  }
+}
+.mypage__heading {
+  @include m.font-set(20);
+  text-align: center;
+}
+.mypage__text {
+  @include m.font-set(16);
+  color: b.$color-gray;
+  text-align: center;
+  margin-top: 2em;
+}
+.mypage__button {
+  margin: 1.5em auto 0;
+}
+.mypage__status {
+  margin-top: 65px;
+  border-top: 2px solid b.$color-gray;
+  position: relative;
+}
+.mypage__tabs {
+  position: absolute;
+  top: -32px;
+  left: 0;
+}
+.mypage__tab {
+  background-color: #ababab;
+  color: #fff;
+  @include m.font-set(16);
+  border-radius: 0.5em 0.5em 0 0;
+  min-width: 140px;
+  height: 30px;
+  @include m.centering;
+  cursor: pointer;
+  &.active {
+    background-color: b.$color-blue;
+  }
+}
+.mypage__list {
+  flex-direction: column;
+  width: min(100%, 160px);
+  margin: 0 auto;
+  padding: 50px 0;
+  gap: 30px;
+  display: none;
+  &.active {
+    display: flex;
+  }
+}
+.mypage__image {
+  width: 100%;
+  object-fit: contain;
+  aspect-ratio: 15/22;
+}
+.mypage__title {
+  @include m.font-set(16);
+  color: b.$color-blue;
+}
+.mypage__author {
+  @include m.font-set(14);
+  color: b.$color-blue;
+}
+.mypage__button--status {
+  background-color: transparent;
+  border: none;
+  @include m.font-set(14);
+  color: b.$color-blue;
+  cursor: pointer;
+}
+.mypage__dialog-label {
+  @include m.font-set(16) {
+    font-weight: bold;
+  }
+  display: block;
+  text-align: center;
+}
+.mypage__dialog-select {
+  width: 100%;
+  @include m.font-set(14);
+  padding: 0.4em;
+  border-radius: 5px;
+  border: 1px solid b.$color-gray;
+  margin-top: 0.5em;
+}
+.mypage__dialog-buttons {
+  justify-content: space-between;
+  margin-top: 25px;
+}
+.mypage__dialog-button {
+  width: 45%;
+  height: 40px;
+  margin: 0;
+  cursor: pointer;
+  border: none;
+  &.cancel {
+    background-color: #757575;
+  }
+}

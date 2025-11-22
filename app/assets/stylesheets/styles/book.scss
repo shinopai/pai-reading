@@ -1,3 +1,4 @@
+@use "../modules/basic" as b;
 @use "../modules/mixins" as m;
 
 /* トップページ */
@@ -8,7 +9,7 @@
 .book__button {
   width: min(100%, 200px);
   height: 35px;
-  background-color: #269bf4;
+  background-color: b.$color-blue;
   @include m.font-set(16);
   color: #fff;
   border-radius: 0.5em;
@@ -38,13 +39,13 @@
   @include m.font-set(18) {
     font-weight: bold;
   }
-  color: #269bf4;
+  color: b.$color-blue;
 }
 .book__author {
   @include m.font-set(14) {
     font-weight: bold;
   }
-  color: #269bf4;
+  color: b.$color-blue;
 }
 
 /* 本を追加する */
@@ -62,7 +63,7 @@
 }
 .book-new__card {
   padding: 30px 0;
-  border-bottom: 1.5px solid #ababab;
+  border-bottom: 1.5px solid b.$color-gray;
 }
 .book-new__card-image {
   width: 30%;
@@ -77,18 +78,18 @@
 }
 .book-new__card-title {
   @include m.font-set(18);
-  color: #269bf4;
+  color: b.$color-blue;
 }
 .book-new__card-authors,
 .book-new__card-publisher {
   @include m.font-set(14);
-  color: #269bf4;
+  color: b.$color-blue;
 }
 .book-new__card-authors {
   flex-wrap: wrap;
 }
 .book-new__card-authors-item {
-  color: #269bf4;
+  color: b.$color-blue;
 }
 .book-new__card-button {
   border: none;
@@ -98,17 +99,6 @@
   position: absolute;
   right: 0;
   bottom: 0;
-}
-.book-new__dialog {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  width: min(100%, 450px);
-  border: none;
-}
-.book-new__dialog-inner {
-  padding: 30px;
 }
 .book-new__dialog-head {
   justify-content: space-between;
@@ -122,15 +112,15 @@
 }
 .book-new__dialog-title {
   @include m.font-set(18);
-  color: #269bf4;
+  color: b.$color-blue;
 }
 .book-new__dialog-authors,
 .book-new__dialog-publisher {
   @include m.font-set(14);
-  color: #269bf4;
+  color: b.$color-blue;
 }
 .book-new__dialog-authors-item {
-  color: #269bf4;
+  color: b.$color-blue;
 }
 .book-new__dialog-form {
   margin-top: 15px;
@@ -147,7 +137,7 @@
   @include m.font-set(14);
   padding: 0.4em;
   border-radius: 5px;
-  border: 1px solid #ababab;
+  border: 1px solid b.$color-gray;
   margin-top: 0.5em;
 }
 .book-new__dialog-buttons {

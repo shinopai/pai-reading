@@ -1,5 +1,9 @@
 @use "mixins" as m;
 
+/* 基本カラー */
+$color-gray: #ababab;
+$color-blue: #269bf4;
+
 /* 基本width */
 .wrap {
   width: min(100%, 1440px);
@@ -26,7 +30,7 @@
 .basic-button {
   width: min(100%, 200px);
   height: 35px;
-  background-color: #269bf4;
+  background-color: $color-blue;
   @include m.font-set(16);
   color: #fff;
   border-radius: 0.5em;
@@ -96,4 +100,17 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+/* 基本ダイアログ */
+.basic-dialog {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: min(100%, 450px);
+  border: none;
+}
+.basic-dialog__inner {
+  padding: 30px;
 }
