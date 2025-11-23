@@ -41,7 +41,7 @@
         <% if @books.any? %>
         <% @books.each do |book| %>
         <figure class="mypage__card">
-          <%= link_to book.info_link, class: 'contents', target: 'blank' do %>
+          <%= link_to book_path(book), class: 'contents' do %>
           <%= image_tag book.image_link, class: 'mypage__image' %>
           <h3 class="mypage__title"><%= book.title.truncate(20) %></h3>
           <p class="mypage__author">
@@ -77,7 +77,7 @@
         <% if @books_finished.any? %>
         <% @books_finished.each do |book| %>
         <figure class="mypage__card">
-          <%= link_to book.info_link, class: 'contents', target: 'blank' do %>
+          <%= link_to book_path(book), class: 'contents' do %>
           <%= image_tag book.image_link, class: 'mypage__image' %>
           <h3 class="mypage__title"><%= book.title.truncate(20) %></h3>
           <p class="mypage__author">
@@ -113,7 +113,7 @@
         <% if @books_reading.any? %>
         <% @books_reading.each do |book| %>
         <figure class="mypage__card">
-          <%= link_to book.info_link, class: 'contents', target: 'blank' do %>
+          <%= link_to book_path(book), class: 'contents' do %>
           <%= image_tag book.image_link, class: 'mypage__image' %>
           <h3 class="mypage__title"><%= book.title.truncate(20) %></h3>
           <p class="mypage__author">
@@ -149,7 +149,7 @@
         <% if @books_now.any? %>
         <% @books_now.each do |book| %>
         <figure class="mypage__card">
-          <%= link_to book.info_link, class: 'contents', target: 'blank' do %>
+          <%= link_to book_path(book), class: 'contents' do %>
           <%= image_tag book.image_link, class: 'mypage__image' %>
           <h3 class="mypage__title"><%= book.title.truncate(20) %></h3>
           <p class="mypage__author">

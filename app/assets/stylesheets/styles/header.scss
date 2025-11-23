@@ -1,10 +1,10 @@
-@use "../modules/basic" as b;
 @use "../modules/mixins" as m;
+@use "../modules/variables" as v;
 
 /* ヘッダースタイル */
 
 .header {
-  background-color: b.$color-blue;
+  background-color: v.$color-blue;
   padding: 10px 0;
 }
 .header__inner {

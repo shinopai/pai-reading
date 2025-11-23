@@ -1,10 +1,10 @@
 @use "../modules/mixins" as m;
-@use "../modules/basic" as b;
+@use "../modules/variables" as v;
 
 /* マイページ */
 .mypage__box {
   background-color: #f9f9f9;
-  border: 1px solid b.$color-gray;
+  border: 1px solid v.$color-gray;
   border-radius: 5px;
   padding: 20px;
   &.second {
@@ -39,7 +39,7 @@
 }
 .mypage__text {
   @include m.font-set(16);
-  color: b.$color-gray;
+  color: v.$color-gray;
   text-align: center;
   margin-top: 2em;
 }
@@ -48,7 +48,7 @@
 }
 .mypage__status {
   margin-top: 65px;
-  border-top: 2px solid b.$color-gray;
+  border-top: 2px solid v.$color-gray;
   position: relative;
 }
 .mypage__tabs {
@@ -66,7 +66,7 @@
   @include m.centering;
   cursor: pointer;
   &.active {
-    background-color: b.$color-blue;
+    background-color: v.$color-blue;
   }
 }
 .mypage__list {
@@ -87,17 +87,17 @@
 }
 .mypage__title {
   @include m.font-set(16);
-  color: b.$color-blue;
+  color: v.$color-blue;
 }
 .mypage__author {
   @include m.font-set(14);
-  color: b.$color-blue;
+  color: v.$color-blue;
 }
 .mypage__button--status {
   background-color: transparent;
   border: none;
   @include m.font-set(14);
-  color: b.$color-blue;
+  color: v.$color-blue;
   cursor: pointer;
 }
 .mypage__dialog-label {
@@ -112,7 +112,7 @@
   @include m.font-set(14);
   padding: 0.4em;
   border-radius: 5px;
-  border: 1px solid b.$color-gray;
+  border: 1px solid v.$color-gray;
   margin-top: 0.5em;
 }
 .mypage__dialog-buttons {

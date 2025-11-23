@@ -3,6 +3,7 @@ require 'json'
 class BooksController < ApplicationController
   before_action :authenticate_user!, only: [:create, :update_status]
   before_action :get_books, only: [:index, :update_status]
+  before_action :find_book, only: [:show, :destroy]
 
   def index
     render :index
@@ -76,6 +77,15 @@ class BooksController < ApplicationController
     end
   end
 
+  def show
+  end
+
+  def destroy
+    @book.destroy
+
+    redirect_to mypages_path, notice: '書籍を削除しました'
+  end
+
   # private
   private
   def book_params
@@ -84,5 +94,9 @@ class BooksController < ApplicationController
 
   def get_books
     @books = Book.all
+  end
+
+  def find_book
+    @book = Book.find(params[:id])
   end
 end

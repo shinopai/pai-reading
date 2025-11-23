@@ -17,3 +17,16 @@ for (let i = 0; i < cancelButtons.length; i++) {
     this.closest(".book-new__dialog").close();
   });
 }
+
+// 書籍の登録を解除
+const form = document.getElementById("xForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  if (confirm("本当に削除してよろしいですか？")) {
+    this.submit();
+  } else {
+    return false;
+  }
+});

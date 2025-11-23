@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   # リレーション
-  has_many :books
+  has_many :books, dependent: :destroy
 
   # nameのバリデーション
   validates :name, presence: true,

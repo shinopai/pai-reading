@@ -1,5 +1,5 @@
-@use "../modules/basic" as b;
 @use "../modules/mixins" as m;
+@use "../modules/variables" as v;
 
 /* トップページ */
 .book__form-wrap {
@@ -9,7 +9,7 @@
 .book__button {
   width: min(100%, 200px);
   height: 35px;
-  background-color: b.$color-blue;
+  background-color: v.$color-blue;
   @include m.font-set(16);
   color: #fff;
   border-radius: 0.5em;
@@ -39,16 +39,16 @@
   @include m.font-set(18) {
     font-weight: bold;
   }
-  color: b.$color-blue;
+  color: v.$color-blue;
 }
 .book__author {
   @include m.font-set(14) {
     font-weight: bold;
   }
-  color: b.$color-blue;
+  color: v.$color-blue;
 }
 
-/* 本を追加する */
+/* 書籍を追加する */
 .book-new__heading {
   @include m.font-set(20);
   text-align: center;
@@ -63,7 +63,7 @@
 }
 .book-new__card {
   padding: 30px 0;
-  border-bottom: 1.5px solid b.$color-gray;
+  border-bottom: 1.5px solid v.$color-gray;
 }
 .book-new__card-image {
   width: 30%;
@@ -78,18 +78,18 @@
 }
 .book-new__card-title {
   @include m.font-set(18);
-  color: b.$color-blue;
+  color: v.$color-blue;
 }
 .book-new__card-authors,
 .book-new__card-publisher {
   @include m.font-set(14);
-  color: b.$color-blue;
+  color: v.$color-blue;
 }
 .book-new__card-authors {
   flex-wrap: wrap;
 }
 .book-new__card-authors-item {
-  color: b.$color-blue;
+  color: v.$color-blue;
 }
 .book-new__card-button {
   border: none;
@@ -112,15 +112,16 @@
 }
 .book-new__dialog-title {
   @include m.font-set(18);
-  color: b.$color-blue;
+  color: v.$color-blue;
 }
 .book-new__dialog-authors,
 .book-new__dialog-publisher {
   @include m.font-set(14);
-  color: b.$color-blue;
+  color: v.$color-blue;
+  flex-wrap: wrap;
 }
 .book-new__dialog-authors-item {
-  color: b.$color-blue;
+  color: v.$color-blue;
 }
 .book-new__dialog-form {
   margin-top: 15px;
@@ -137,7 +138,7 @@
   @include m.font-set(14);
   padding: 0.4em;
   border-radius: 5px;
-  border: 1px solid b.$color-gray;
+  border: 1px solid v.$color-gray;
   margin-top: 0.5em;
 }
 .book-new__dialog-buttons {
@@ -153,4 +154,50 @@
   &.cancel {
     background-color: #757575;
   }
+}
+
+/* 書籍詳細 */
+.book-show__data {
+  justify-content: space-between;
+}
+.book-show__image {
+  width: 23%;
+  img {
+    width: 100%;
+    aspect-ratio: 128 / 182;
+    object-fit: cover;
+  }
+}
+.book-show__detail {
+  width: 75%;
+}
+.book-show__title {
+  @include m.font-set(20);
+}
+.book-show__authors {
+  @include m.font-set(16);
+  flex-wrap: wrap;
+}
+.book-show__buttons {
+  margin-top: 15px;
+  justify-content: space-between;
+}
+.book-show__button {
+  margin: 0;
+  border: none;
+  cursor: pointer;
+  &.amazon {
+    background-color: #fa8a01;
+    border: none;
+    box-shadow: 0 4px 1px rgba(250, 138, 1, 0.9);
+  }
+}
+.book-show__form {
+  width: min(100%, 200px);
+}
+.book-show__note {
+  margin-top: 15px;
+}
+.book-show__note-title {
+  @include m.font-set(14);
 }

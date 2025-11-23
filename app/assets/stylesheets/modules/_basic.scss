@@ -1,8 +1,5 @@
 @use "mixins" as m;
-
-/* 基本カラー */
-$color-gray: #ababab;
-$color-blue: #269bf4;
+@use "variables" as v;
 
 /* 基本width */
 .wrap {
@@ -30,7 +27,7 @@ $color-blue: #269bf4;
 .basic-button {
   width: min(100%, 200px);
   height: 35px;
-  background-color: $color-blue;
+  background-color: v.$color-blue;
   @include m.font-set(16);
   color: #fff;
   border-radius: 0.5em;

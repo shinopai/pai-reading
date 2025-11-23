@@ -1,7 +1,7 @@
 class Book < ApplicationRecord
   # リレーション
   belongs_to :user
-  has_many :book_authors
+  has_many :book_authors, dependent: :destroy
   has_many :authors, through: :book_authors
 
   # statusカラムを定義

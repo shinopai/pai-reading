@@ -1,9 +1,9 @@
-@use "../modules/basic" as b;
 @use "../modules/mixins" as m;
+@use "../modules/variables" as v;
 
 .auth__heading {
   @include m.font-set(20);
-  color: b.$color-gray;
+  color: v.$color-gray;
   text-align: center;
 }
 .auth__form {
@@ -20,7 +20,7 @@
 }
 .auth__label {
   @include m.font-set(16);
-  color: b.$color-gray;
+  color: v.$color-gray;
   display: inline-block;
   width: 100%;
   text-align: center;
@@ -28,11 +28,11 @@
 .auth__input {
   width: 100%;
   height: 38px;
-  border: 1.5px solid b.$color-gray;
+  border: 1.5px solid v.$color-gray;
   @include m.font-set(16) {
     font-weight: bold;
   }
-  color: b.$color-gray;
+  color: v.$color-gray;
   padding: 0 0.5em;
   margin-top: 0.3em;
   &:focus {
