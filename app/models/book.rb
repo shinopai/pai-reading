@@ -3,6 +3,7 @@ class Book < ApplicationRecord
   belongs_to :user
   has_many :book_authors, dependent: :destroy
   has_many :authors, through: :book_authors
+  has_many :notes, dependent: :destroy
 
   # statusカラムを定義
   enum :status, { 'これから読む': 0, '今読んでいる': 1, '読み終わった': 2 }

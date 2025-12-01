@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get :keyword
       patch :update_status
     end
+    resources :notes
   end
 
   # ゲストログイン

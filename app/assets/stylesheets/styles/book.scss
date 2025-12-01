@@ -186,6 +186,10 @@
   margin: 0;
   border: none;
   cursor: pointer;
+  width: min(30%, 320px);
+  &.destroy {
+    width: 100%;
+  }
   &.amazon {
     background-color: #fa8a01;
     border: none;
@@ -193,7 +197,7 @@
   }
 }
 .book-show__form {
-  width: min(100%, 200px);
+  width: min(100%, 320px);
 }
 .book-show__note {
   margin-top: 15px;

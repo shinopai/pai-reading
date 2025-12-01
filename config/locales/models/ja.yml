@@ -6,3 +6,12 @@ ja:
         email: Eメール
         password: パスワード
         password_confirmation: 確認用パスワード
+      note:
+        purpose: 目的
+        impression: 感想
+        memo: メモ
+      point:
+        title: タイトル
+        description: 説明
+      action_plan:
+        detail: 詳細

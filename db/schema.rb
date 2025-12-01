@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_17_014129) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_23_104215) do
+  create_table "action_plans", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "detail", default: "", null: false
+    t.integer "note_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["note_id"], name: "index_action_plans_on_note_id"
+  end
+
   create_table "authors", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name", default: "", null: false
@@ -39,6 +47,25 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_17_014129) do
     t.index ["user_id"], name: "index_books_on_user_id"
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.integer "book_id", null: false
+    t.datetime "created_at", null: false
+    t.text "impression", default: "", null: false
+    t.text "memo", default: "", null: false
+    t.text "purpose", default: "", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_notes_on_book_id"
+  end
+
+  create_table "points", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "description", default: "", null: false
+    t.integer "note_id", null: false
+    t.string "title", default: "", null: false
+    t.datetime "updated_at", null: false
+    t.index ["note_id"], name: "index_points_on_note_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
@@ -53,7 +80,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_17_014129) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "action_plans", "notes"
   add_foreign_key "book_authors", "authors"
   add_foreign_key "book_authors", "books"
   add_foreign_key "books", "users"
+  add_foreign_key "notes", "books"
+  add_foreign_key "points", "notes"
 end

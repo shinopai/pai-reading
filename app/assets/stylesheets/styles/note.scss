@@ -1,0 +1,123 @@
+@use "../modules/mixins" as m;
+@use "../modules/variables" as v;
+
+/* ノート作成フォーム */
+.note-new__heading--sub {
+  @include m.font-set(16);
+  color: v.$color-gray;
+  text-align: center;
+}
+.note-new__heading {
+  @include m.font-set(22);
+  color: v.$color-blue;
+  text-align: center;
+  margin-top: 0.5em;
+}
+.note-new__form {
+  margin-top: 30px;
+}
+.note-new__form-item {
+  border: 1px solid v.$color-gray;
+  overflow: hidden;
+  border-radius: 10px;
+  &:not(.first) {
+    margin-top: 25px;
+  }
+}
+.note-new__form-inner {
+  padding: 16px;
+}
+.note-new__error-message {
+  @include m.font-set(16) {
+    font-weight: bold;
+  }
+  color: v.$color-red;
+  text-align: center;
+  margin: 0.3em 0;
+}
+.note-new__title {
+  @include m.font-set(20) {
+    font-weight: bold;
+  }
+  background-color: v.$color-blue;
+  color: #fff;
+  display: block;
+  padding: 0.3em 0;
+  text-align: center;
+}
+.note-new__label {
+  @include m.font-set(16) {
+    font-weight: normal;
+  }
+  display: block;
+  color: v.$color-gray;
+  &.second {
+    margin-top: 2em;
+  }
+}
+.note-new__textarea {
+  @include m.font-set(16);
+  resize: none;
+  border: none;
+  width: 100%;
+  min-height: 160px;
+  &::placeholder {
+    @include m.font-set(14);
+    color: v.$color-gray;
+  }
+  &:focus {
+    outline: none;
+  }
+  &.has-padding {
+    padding: 0.5em 0;
+  }
+}
+.note-new__textfield {
+  @include m.font-set(16);
+  border: none;
+  border-bottom: 1px solid v.$color-gray;
+  width: 100%;
+  padding: 0.5em 0;
+  &::placeholder {
+    @include m.font-set(14);
+    color: v.$color-gray;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+.note-new__list {
+  padding-top: 20px;
+}
+.note-new__list-item {
+  border-bottom: 1px solid v.$color-gray;
+  padding-bottom: 16px;
+  &.action-plan {
+    position: relative;
+    border-bottom: none;
+    margin-top: 0 !important;
+  }
+  &:not(:first-child) {
+    margin-top: 30px;
+  }
+}
+.note-new__list-mark {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-16px);
+}
+.note-new__button {
+  margin: 0 auto;
+  cursor: pointer;
+  border: none;
+  width: min(100%, 100px);
+  box-shadow: none;
+  &.destroy {
+    background-color: v.$color-gray;
+  }
+  &.has-margin {
+    margin-top: 1em;
+  }
+}

@@ -33,8 +33,8 @@
     </div>
     <div class="book-show__buttons flex">
       <button type="button" class="book-show__button basic-button amazon">Amazon</button>
-      <%= button_to "登録を解除", book_path(@book), method: :delete, class: 'book-show__button basic-button', id: 'xDestroyButton', form: { class: 'book-show__form', id: 'xForm' } %>
-      <%= link_to 'ノート作成', root_path, class: 'book-show__button basic-button' %>
+      <%= button_to "登録を解除", book_path(@book), method: :delete, class: 'book-show__button basic-button destroy', id: 'xDestroyButton', form: { class: 'book-show__form', id: 'xForm' } %>
+      <%= link_to 'ノート作成', new_book_note_path(@book), class: 'book-show__button basic-button' %>
     </div>
     <div class="book-show__note">
       <h3 class="book-show__note-title">この本のノート数&nbsp;0</h3>
