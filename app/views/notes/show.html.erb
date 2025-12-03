@@ -1,0 +1,65 @@
+<%# スタイル %>
+<%= stylesheet_link_tag 'styles/note' %>
+
+<%# スクリプト %>
+<% content_for :js do %>
+<%= javascript_import_module_tag "note" %>
+<% end %>
+
+<div class="note-show main">
+  <div class="wrap">
+    <div class="note-show__head flex">
+      <div class="note-show__head-item">
+        <%= link_to 'ノート一覧へ戻る', :back, class: 'note-show__link' %>
+        <p class="note-show__text">
+          <%= current_user.name %>さんのページ
+        </p>
+      </div>
+      <div class="note-show__head-item flex">
+        <%= link_to '###', class: 'contents' do %>
+        <i class="fa-solid fa-pen-to-square note-show__icon" style="color: #269bf4;"></i>
+        <% end %>
+        <i class="fa-solid fa-trash note-show__icon" style="color: #269bf4;"></i>
+      </div>
+    </div>
+    <h2 class="note-show__title"><%= @book.title %></h2>
+    <h3 class="note-show__author">ノート作者:<%= current_user.name %></h3>
+    <div class="note-show__main">
+      <div class="note-show__box first basic-note-box">
+        <h3 class="basic-note-box__title">読む目的</h3>
+        <div class="basic-note-box__content"><%= @note.purpose %></div>
+      </div>
+      <div class="note-show__box basic-note-box">
+        <h3 class="basic-note-box__title">本のポイント</h3>
+        <div class="basic-note-box__content">
+          <dl class="note-show__list">
+            <% @note.points.each do |point| %>
+            <dt class="note-show__list-title"><%= point.title %></dt>
+            <dd class="note-show__list-desc"><%= point.description %></dd>
+            <% end %>
+          </dl>
+        </div>
+      </div>
+      <div class="note-show__box basic-note-box">
+        <h3 class="basic-note-box__title">感想</h3>
+        <div class="basic-note-box__content"><%= @note.impression %></div>
+      </div>
+      <div class="note-show__box basic-note-box">
+        <h3 class="basic-note-box__title">アクションプラン</h3>
+        <div class="basic-note-box__content">
+          <ul class="note-show__list">
+            <% @note.action_plans.each do |action_plan| %>
+            <li class="note-show__list-item">
+              &bull;&nbsp;<%= action_plan.detail %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="note-show__box basic-note-box">
+        <h3 class="basic-note-box__title">メモ</h3>
+        <div class="basic-note-box__content"><%= @note.memo %></div>
+      </div>
+    </div>
+  </div>
+</div>

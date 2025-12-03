@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  before_action :find_book, only: [:new, :create]
+  before_action :find_book, only: [:new, :create, :show]
 
   def new
     @note = @book.notes.build
@@ -76,6 +76,12 @@ class NotesController < ApplicationController
 
     end
 
+  end
+
+  def show
+    @note = Note.find(params[:id])
+
+    render :show
   end
 
   # private

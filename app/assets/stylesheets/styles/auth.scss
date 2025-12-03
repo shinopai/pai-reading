@@ -3,7 +3,7 @@
 
 .auth__heading {
   @include m.font-set(20);
-  color: v.$color-gray;
+  color: v.$color-gray-font;
   text-align: center;
 }
 .auth__form {
@@ -20,7 +20,7 @@
 }
 .auth__label {
   @include m.font-set(16);
-  color: v.$color-gray;
+  color: v.$color-gray-font;
   display: inline-block;
   width: 100%;
   text-align: center;
@@ -32,7 +32,7 @@
   @include m.font-set(16) {
     font-weight: bold;
   }
-  color: v.$color-gray;
+  color: v.$color-gray-font;
   padding: 0 0.5em;
   margin-top: 0.3em;
   &:focus {

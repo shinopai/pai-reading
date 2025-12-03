@@ -13,7 +13,7 @@
         <%= image_tag @book.image_link, alt: @book.title %>
       </figure>
       <div class="book-show__detail">
-      <h3 class="book-show__title"><%= @book.title %></h3>
+      <h2 class="book-show__title"><%= @book.title %></h2>
       <ul class="book-show__authors flex">
             <% if @book.authors.any? %>
             <% @book.authors.each_with_index do |author, index| %>
@@ -37,10 +37,40 @@
       <%= link_to 'ノート作成', new_book_note_path(@book), class: 'book-show__button basic-button' %>
     </div>
     <div class="book-show__note">
-      <h3 class="book-show__note-title">この本のノート数&nbsp;0</h3>
-      <ul class="book-show__note-list">
-        <li class="book-show__note-item">ノート一覧</li>
-      </ul>
+      <h3 class="book-show__note-title">
+        この本のノート数&nbsp;<%= @book.notes.size %>
+      </h3>
+      <div class="book-show__note-list">
+        <h3 class="book-show__note-heading">ノート一覧</h3>
+        <% if @book.notes.any? %>
+        <% @book.notes.each do |note| %>
+        <%= link_to book_note_path(@book, note), class: 'contents' do %>
+          <div class="book-show__note-box">
+            <div class="book-show__note-head flex">
+              <h3 class="book-show__note-name">
+                <%= @book.user.name %>さんのノート
+              </h3>
+              <span class="book-show__note-like">0</span>
+            </div>
+            <ul class="book-show__note-points">
+              <li class="book-show__note-points-item">
+              <% @book.notes.each do |note| %>
+              <% note.points.each_with_index do |point, index| %>
+                <h3 class="book-show__note-points-title">
+                  <%= index + 1 %>.&nbsp;<%= point.title %>
+                </h3>
+                <p class="book-show__note-points-desc"><%= point.description %></p>
+              <% end %>
+              <% end %>
+              </li>
+            </ul>
+          </div>
+          <% end %>
+        <% end %>
+        <% else %>
+          <p class="book-show__note-text">ノートはありません</p>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

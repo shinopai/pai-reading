@@ -16,6 +16,10 @@ class MypagesController < ApplicationController
     # ユーザーに紐づいている書籍の内、ステータスが「読み終わった」のものを取得
     @books_finished = @user.books.where(status: 2)
 
+    # ユーザーが書いたノートの総数
+    ids = @user.books.select(:id)
+    @total_notes = Note.where(book_id: ids).size
+
     render :index
   end
 end

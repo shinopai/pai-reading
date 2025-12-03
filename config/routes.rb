@@ -18,10 +18,10 @@ Rails.application.routes.draw do
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
-  # Defines the root path route ("/")
+  # ルート
   root "books#index"
 
-  # books
+  # 書籍
   resources :books, except: [:index, :update] do
     collection do
       get :search
@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     end
     resources :notes
   end
+
+  # 各ユーザーに紐づいた
+
 
   # ゲストログイン
   post	'/users/guest_sign_in', to: 'guests#guest_sign_in', as: :guest_session

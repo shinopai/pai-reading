@@ -205,3 +205,65 @@
 .book-show__note-title {
   @include m.font-set(14);
 }
+.book-show__note-list {
+  margin-top: 30px;
+}
+.book-show__note-heading {
+  @include m.font-set(20) {
+    font-weight: bold;
+  }
+  color: v.$color-gray-font;
+  text-align: center;
+}
+.book-show__note-box {
+  background-color: #f5f6f6;
+  border-radius: 10px;
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+}
+.book-show__note-head {
+  justify-content: space-between;
+  align-items: center;
+}
+.book-show__note-name {
+  @include m.font-set(16) {
+    font-weight: bold;
+  }
+  color: v.$color-gray-font;
+}
+.book-show__note-like {
+  @include m.font-set(14) {
+    font-weight: bold;
+  }
+  color: v.$color-gray-font;
+  position: relative;
+  &::before {
+    font-family: "Font Awesome 7 Free";
+    font-size: 0.7em;
+    font-weight: 900;
+    content: "\f004";
+    position: absolute;
+    left: -2em;
+    bottom: 0.2em;
+    color: #e74c3c;
+  }
+}
+.book-show__note-points {
+  margin-top: 15px;
+}
+.book-show__note-points-item {
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+}
+.book-show__note-points-title {
+  @include m.font-set(16);
+  color: v.$color-gray-font;
+}
+.book-show__note-points-desc {
+  @include m.font-set(14);
+  color: v.$color-gray-font;
+  padding-left: 2.3em;
+  text-indent: -1em;
+}

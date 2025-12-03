@@ -1,10 +1,33 @@
 @use "../modules/mixins" as m;
 @use "../modules/variables" as v;
 
+/* 共通部分 */
+.basic-note-box {
+  border: 1px solid v.$color-gray;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.basic-note-box__title {
+  @include m.font-set(20) {
+    font-weight: bold;
+  }
+  background-color: v.$color-blue;
+  color: #fff;
+  display: block;
+  padding: 0.3em 0;
+  text-align: center;
+}
+.basic-note-box__content {
+  @include m.font-set(14) {
+    font-weight: bold;
+  }
+  padding: 1.1em;
+}
+
 /* ノート作成フォーム */
 .note-new__heading--sub {
   @include m.font-set(16);
-  color: v.$color-gray;
+  color: v.$color-gray-font;
   text-align: center;
 }
 .note-new__heading {
@@ -50,7 +73,7 @@
     font-weight: normal;
   }
   display: block;
-  color: v.$color-gray;
+  color: v.$color-gray-font;
   &.second {
     margin-top: 2em;
   }
@@ -63,7 +86,7 @@
   min-height: 160px;
   &::placeholder {
     @include m.font-set(14);
-    color: v.$color-gray;
+    color: v.$color-gray-font;
   }
   &:focus {
     outline: none;
@@ -80,7 +103,7 @@
   padding: 0.5em 0;
   &::placeholder {
     @include m.font-set(14);
-    color: v.$color-gray;
+    color: v.$color-gray-font;
   }
   &:focus {
     outline: none;
@@ -115,9 +138,63 @@
   width: min(100%, 100px);
   box-shadow: none;
   &.destroy {
-    background-color: v.$color-gray;
+    background-color: v.$color-gray-font;
   }
   &.has-margin {
     margin-top: 1em;
+  }
+}
+
+/* ノート詳細 */
+.note-show__head {
+  justify-content: space-between;
+}
+.note-show__head-item {
+  &.flex {
+    gap: 12px;
+  }
+}
+.note-show__link,
+.note-show__text {
+  @include m.font-set(14);
+  color: v.$color-gray-font;
+}
+.note-show__icon {
+  @include m.font-set(18);
+  cursor: pointer;
+}
+.note-show__title {
+  @include m.font-set(20);
+  color: v.$color-blue;
+  text-align: center;
+  margin-top: 2em;
+}
+.note-show__author {
+  @include m.font-set(14);
+  text-align: center;
+  margin-top: 1em;
+}
+.note-show__main {
+  margin-top: 50px;
+}
+.note-show__box {
+  &:not(.first) {
+    margin-top: 25px;
+  }
+}
+.note-show__list-title {
+  @include m.font-set(18);
+  background: linear-gradient(transparent 60%, #a1e8fe 60%);
+  display: inline-block;
+  &:not(:first-of-type) {
+    margin-top: 0.5em;
+  }
+}
+.note-show__list-desc {
+  margin-top: 1em;
+}
+.note-show__list-item {
+  &:not(:first-child) {
+    margin-top: 0.4em;
   }
 }
