@@ -1,6 +1,7 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!, only: [:new]
   before_action :find_book, only: [:new, :create, :show]
+  before_action :find_note, only: [:show, :destroy]
 
   def new
     @note = @book.notes.build
@@ -79,9 +80,16 @@ class NotesController < ApplicationController
   end
 
   def show
-    @note = Note.find(params[:id])
-
     render :show
+  end
+
+  def destroy
+    if @note.destroy
+      redirect_to root_path
+    else
+      flash.now[:alert] = 'ノートが削除出来ませんでした'
+      return
+    end
   end
 
   # private
@@ -92,5 +100,9 @@ class NotesController < ApplicationController
 
   def find_book
     @book = Book.find(params[:book_id])
+  end
+
+  def find_note
+    @note = Note.find(params[:id])
   end
 end

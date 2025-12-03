@@ -154,6 +154,29 @@
     gap: 12px;
   }
 }
+.note-show__dialog {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: min(100%, 300px);
+  border: none;
+}
+.note-show__dialog-text {
+  @include m.font-set(16) {
+    font-weight: bold;
+  }
+  text-align: center;
+  padding: 1em;
+}
+.note-show__dialog-button {
+  @include m.font-set(14) {
+    font-weight: bold;
+  }
+  width: 50%;
+  height: 42px;
+  cursor: pointer;
+}
 .note-show__link,
 .note-show__text {
   @include m.font-set(14);

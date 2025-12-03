@@ -1,11 +1,6 @@
 <%# スタイル %>
 <%= stylesheet_link_tag 'styles/note' %>
 
-<%# スクリプト %>
-<% content_for :js do %>
-<%= javascript_import_module_tag "note" %>
-<% end %>
-
 <div class="note-show main">
   <div class="wrap">
     <div class="note-show__head flex">
@@ -19,9 +14,18 @@
         <%= link_to '###', class: 'contents' do %>
         <i class="fa-solid fa-pen-to-square note-show__icon" style="color: #269bf4;"></i>
         <% end %>
-        <i class="fa-solid fa-trash note-show__icon" style="color: #269bf4;"></i>
+        <i class="fa-solid fa-trash note-show__icon" id="xDestroyIcon" style="color: #269bf4;"></i>
       </div>
     </div>
+    <dialog class="note-show__dialog" id="xDialog">
+      <p class="note-show__dialog-text">本当に削除しますか？</p>
+      <%= form_with url: book_note_path(@book, @note), class: 'note-show__dialog-form', method: :delete do |f| %>
+      <div class="note-show__buttons flex">
+        <%= button_tag 'キャンセル', type: 'button', class: 'note-show__dialog-button', id: "xCancelButton" %>
+        <%= button_tag '削除する', type: 'submit', class: 'note-show__dialog-button' %>
+      </div>
+      <% end %>
+    </dialog>
     <h2 class="note-show__title"><%= @book.title %></h2>
     <h3 class="note-show__author">ノート作者:<%= current_user.name %></h3>
     <div class="note-show__main">
@@ -63,3 +67,18 @@
     </div>
   </div>
 </div>
+
+<script>
+  // ノートを削除
+  const destroyIcon = document.getElementById("xDestroyIcon");
+  const dialog = document.getElementById("xDialog");
+  const cancelButton = document.getElementById("xCancelButton");
+
+  destroyIcon.addEventListener("click", function() {
+    dialog.showModal();
+  });
+
+  cancelButton.addEventListener('click', function() {
+    dialog.close();
+  })
+</script>
