@@ -62,6 +62,12 @@ group :development do
 
   # テストデータ作成
   gem 'faker'
+
+  # ERBフォーマッター
+  gem 'htmlbeautifier'
+
+  # Rubyコード補完
+  gem 'solargraph'
 end
 
 group :test do

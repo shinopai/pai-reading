@@ -24,22 +24,22 @@
   padding: 1.1em;
 }
 
-/* ノート作成フォーム */
-.note-new__heading--sub {
+/* ノート作成＆編集フォーム */
+.note-update__heading--sub {
   @include m.font-set(16);
   color: v.$color-gray-font;
   text-align: center;
 }
-.note-new__heading {
+.note-update__heading {
   @include m.font-set(22);
   color: v.$color-blue;
   text-align: center;
   margin-top: 0.5em;
 }
-.note-new__form {
+.note-update__form {
   margin-top: 30px;
 }
-.note-new__form-item {
+.note-update__form-item {
   border: 1px solid v.$color-gray;
   overflow: hidden;
   border-radius: 10px;
@@ -47,10 +47,10 @@
     margin-top: 25px;
   }
 }
-.note-new__form-inner {
+.note-update__form-inner {
   padding: 16px;
 }
-.note-new__error-message {
+.note-update__error-message {
   @include m.font-set(16) {
     font-weight: bold;
   }
@@ -58,7 +58,7 @@
   text-align: center;
   margin: 0.3em 0;
 }
-.note-new__title {
+.note-update__title {
   @include m.font-set(20) {
     font-weight: bold;
   }
@@ -68,7 +68,7 @@
   padding: 0.3em 0;
   text-align: center;
 }
-.note-new__label {
+.note-update__label {
   @include m.font-set(16) {
     font-weight: normal;
   }
@@ -78,7 +78,7 @@
     margin-top: 2em;
   }
 }
-.note-new__textarea {
+.note-update__textarea {
   @include m.font-set(16);
   resize: none;
   border: none;
@@ -95,7 +95,7 @@
     padding: 0.5em 0;
   }
 }
-.note-new__textfield {
+.note-update__textfield {
   @include m.font-set(16);
   border: none;
   border-bottom: 1px solid v.$color-gray;
@@ -109,10 +109,10 @@
     outline: none;
   }
 }
-.note-new__list {
+.note-update__list {
   padding-top: 20px;
 }
-.note-new__list-item {
+.note-update__list-item {
   border-bottom: 1px solid v.$color-gray;
   padding-bottom: 16px;
   &.action-plan {
@@ -124,14 +124,14 @@
     margin-top: 30px;
   }
 }
-.note-new__list-mark {
+.note-update__list-mark {
   position: absolute;
   right: 0;
   cursor: pointer;
   top: 50%;
   transform: translateY(-16px);
 }
-.note-new__button {
+.note-update__button {
   margin: 0 auto;
   cursor: pointer;
   border: none;

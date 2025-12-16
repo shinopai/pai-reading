@@ -1,7 +1,9 @@
 class NotesController < ApplicationController
   before_action :authenticate_user!, only: [:new]
-  before_action :find_book, only: [:new, :create, :show]
-  before_action :find_note, only: [:show, :destroy]
+  before_action :find_book, only: [:new, :create, :show, :edit, :update]
+  before_action :find_note, only: [:show, :destroy, :edit, :update]
+  before_action :get_point_ids, only: [:edit, :update]
+  before_action :get_action_plan_ids, only: [:edit, :update]
 
   def new
     @note = @book.notes.build
@@ -83,6 +85,10 @@ class NotesController < ApplicationController
     render :show
   end
 
+  def edit
+    render :edit
+  end
+
   def destroy
     if @note.destroy
       redirect_to root_path
@@ -92,10 +98,27 @@ class NotesController < ApplicationController
     end
   end
 
+  def update
+    logger.info('params中身')
+    logger.debug(note_update_params)
+    @note.assign_attributes(note_update_params)
+
+    if @note.valid?
+      @note.save
+      redirect_to book_path(@book), notice: 'ノートを更新しました'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   # private
   private
   def note_params
     params.require(:note).permit(:purpose, :impression, :memo, points_attributes: [:note_id, title: [], description: []], action_plans_attributes: [:note_id, detail: []])
+  end
+
+  def note_update_params
+    params.require(:note).permit(:purpose, :impression, :memo, points_attributes: [:id, :note_id, :title, :description, :_destroy], action_plans_attributes: [:id, :note_id, :detail, :_destroy])
   end
 
   def find_book
@@ -104,5 +127,13 @@ class NotesController < ApplicationController
 
   def find_note
     @note = Note.find(params[:id])
+  end
+
+  def get_point_ids
+    @point_ids = @note.points.pluck(:id)
+  end
+
+  def get_action_plan_ids
+    @action_plan_ids = @note.action_plans.pluck(:id)
   end
 end

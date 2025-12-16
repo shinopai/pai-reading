@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="note-show__head-item flex">
-        <%= link_to '###', class: 'contents' do %>
+        <%= link_to edit_book_note_path(@book, @note), class: 'contents' do %>
         <i class="fa-solid fa-pen-to-square note-show__icon" style="color: #269bf4;"></i>
         <% end %>
         <i class="fa-solid fa-trash note-show__icon" id="xDestroyIcon" style="color: #269bf4;"></i>

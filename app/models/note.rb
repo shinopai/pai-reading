@@ -19,39 +19,4 @@ class Note < ApplicationRecord
       validates :impression
       validates :memo
     end
-
-    # 子モデルのバリデーション
-    # validates :points, presence: true
-    # validates :action_plans, presence: true
-    # validate :merge_point_errors
-    # validate :merge_action_plan_errors
-    # validates :points
-    # validates :action_plans
-
-    # 子モデルのバリデーションエラーが発生した場合は親モデルに統合する
-    # 本のポイント
-    # def merge_point_errors
-    #   points.each do |point|
-    #     unless point.valid?
-    #       point.errors.each do |error|
-    #         # 親のerrorsオブジェクトに子のエラーメッセージを追加する
-    #         # attributes: false を使用して :base にエラーを追加することも可能
-    #         errors.add(error.attribute, error.message)
-    #       end
-    #     end
-    #   end
-    # end
-
-    # アクションプラン
-    # def merge_action_plan_errors
-    #   action_plans.each do |action_plan|
-    #     unless action_plan.valid?
-    #       action_plan.errors.each do |error|
-    #         # 親のerrorsオブジェクトに子のエラーメッセージを追加する
-    #         # attributes: false を使用して :base にエラーを追加することも可能
-    #         errors.add(error.attribute, error.message)
-    #       end
-    #     end
-    #   end
-    # end
 end

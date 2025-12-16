@@ -6,11 +6,11 @@
  <%= javascript_import_module_tag "note" %>
 <% end %>
 
-<div class="note-new main">
+<div class="note-update main">
   <div class="wrap">
-    <h3 class="note-new__heading--sub">ノート新規作成ページ</h3>
-    <h2 class="note-new__heading"><%= @book.title %></h2>
-    <%= form_with model: @note, url: book_notes_path(@book), local: true, class: 'note-new__form' do |note_f| %>
+    <h3 class="note-update__heading--sub">ノート新規作成ページ</h3>
+    <h2 class="note-update__heading"><%= @book.title %></h2>
+    <%= form_with model: @note, url: book_notes_path(@book), local: true, class: 'note-update__form' do |note_f| %>
       <% if @note.errors.any? %>
         <ul class="error__list">
       <% @note.errors.where(:purpose).each do |error| %>
@@ -18,10 +18,10 @@
       <% end %>
         </ul>
       <% end %>
-      <div class="note-new__form-item first">
-        <h3 class="note-new__title">読む目的</h3>
-        <div class="note-new__form-inner">
-          <%= note_f.text_area :purpose, class: 'note-new__textarea', placeholder: '本を読んで知りたいことなどを記入しましょう' %>
+      <div class="note-update__form-item first">
+        <h3 class="note-update__title">読む目的</h3>
+        <div class="note-update__form-inner">
+          <%= note_f.text_area :purpose, class: 'note-update__textarea', placeholder: '本を読んで知りたいことなどを記入しましょう' %>
         </div>
       </div>
       <% if @point.errors.any? %>
@@ -34,21 +34,21 @@
       <% end %>
         </ul>
       <% end %>
-      <div class="note-new__form-item">
-        <h3 class="note-new__title">本のポイント</h3>
-        <div class="note-new__form-inner">
+      <div class="note-update__form-item">
+        <h3 class="note-update__title">本のポイント</h3>
+        <div class="note-update__form-inner">
         <%= note_f.fields_for :points, @point do |point_f| %>
-          <ul class="note-new__list" id="xPointList">
-            <li class="note-new__list-item point">
-            <h3 class="note-new__label">タイトル</h3>
-            <%= point_f.text_field :title, class: "note-new__textfield", id: nil, placeholder: 'ポイントを一言で記入しましょう', :multiple => true %>
-            <h3 class="note-new__label second">説明</h3>
-            <%= point_f.text_area :description, class: "note-new__textarea has-padding", id: nil, placeholder: '説明を記入しましょう', :multiple => true %>
-            <%= button_tag '削除する', type: 'button', class: 'note-new__button basic-button destroy', onclick: 'removePointListItem(this)' %>
+          <ul class="note-update__list" id="xPointList">
+            <li class="note-update__list-item point">
+            <h3 class="note-update__label">タイトル</h3>
+            <%= point_f.text_field :title, class: "note-update__textfield", id: nil, placeholder: 'ポイントを一言で記入しましょう', :multiple => true %>
+            <h3 class="note-update__label second">説明</h3>
+            <%= point_f.text_area :description, class: "note-update__textarea has-padding", id: nil, placeholder: '説明を記入しましょう', :multiple => true %>
+            <%= button_tag '削除する', type: 'button', class: 'note-update__button basic-button destroy', onclick: 'removePointListItem(this)' %>
             </li>
           </ul>
         <% end %>
-        <%= button_tag '追加する', type: 'button', class: 'note-new__button basic-button has-margin', id: 'xPointAddButton' %>
+        <%= button_tag '追加する', type: 'button', class: 'note-update__button basic-button has-margin', id: 'xPointAddButton' %>
         </div>
       </div>
       <% if @note.errors.any? %>
@@ -58,10 +58,10 @@
       <% end %>
         </ul>
       <% end %>
-      <div class="note-new__form-item">
-        <h3 class="note-new__title">感想</h3>
-        <div class="note-new__form-inner">
-        <%= note_f.text_area :impression, class: 'note-new__textarea', placeholder: '感想を記入しましょう' %>
+      <div class="note-update__form-item">
+        <h3 class="note-update__title">感想</h3>
+        <div class="note-update__form-inner">
+        <%= note_f.text_area :impression, class: 'note-update__textarea', placeholder: '感想を記入しましょう' %>
       </div>
       </div>
       <% if @action_plan.errors.any? %>
@@ -71,19 +71,18 @@
       <% end %>
         </ul>
       <% end %>
-      <div class="note-new__form-item">
-        <h3 class="note-new__title">アクションプラン</h3>
-        <div class="note-new__form-inner">
+      <div class="note-update__form-item">
+        <h3 class="note-update__title">アクションプラン</h3>
+        <div class="note-update__form-inner">
         <%= note_f.fields_for :action_plans, @action_plan do |action_plan_f| %>
-          <h3 class="note-new__label">アクションプラン</h3>
-          <ul class="note-new__list" id="xActionList">
-            <li class="note-new__list-item action-plan">
-              <%= action_plan_f.text_field :detail, class: "note-new__textfield", id: nil, placeholder: '実践したいことなどを記入しましょう', :multiple => true %>
-              <i class="fa-solid fa-circle-xmark note-new__list-mark" style="color: #ababab;" onclick="removeActionListItem(this)"></i>
+          <ul class="note-update__list" id="xActionList">
+            <li class="note-update__list-item action-plan">
+              <%= action_plan_f.text_field :detail, class: "note-update__textfield", id: nil, placeholder: '実践したいことなどを記入しましょう', :multiple => true %>
+              <i class="fa-solid fa-circle-xmark note-update__list-mark" style="color: #ababab;" onclick="removeActionListItem(this)"></i>
             </li>
           </ul>
         <% end %>
-          <%= button_tag '追加する', type: 'button', class: 'note-new__button basic-button has-margin', id: 'xActionAddButton' %>
+          <%= button_tag '追加する', type: 'button', class: 'note-update__button basic-button has-margin', id: 'xActionAddButton' %>
           </div>
       </div>
       <% if @note.errors.any? %>
@@ -93,13 +92,13 @@
       <% end %>
         </ul>
       <% end %>
-      <div class="note-new__form-item">
-        <h3 class="note-new__title">メモ</h3>
-        <div class="note-new__form-inner">
-        <%= note_f.text_area :memo, class: 'note-new__textarea', placeholder: '疑問や新しい発見などを記入しましょう' %>
+      <div class="note-update__form-item">
+        <h3 class="note-update__title">メモ</h3>
+        <div class="note-update__form-inner">
+        <%= note_f.text_area :memo, class: 'note-update__textarea', placeholder: '疑問や新しい発見などを記入しましょう' %>
         </div>
       </div>
-      <%= note_f.submit '保存', class: 'note-new__button basic-button has-margin' %>
+      <%= note_f.submit '保存', class: 'note-update__button basic-button has-margin' %>
     <% end %>
   </div>
 </div>
