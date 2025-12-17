@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   # リレーション
   has_many :books, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_notes, through: :likes, source: :note
 
   # nameのバリデーション
   validates :name, presence: true,

@@ -65,6 +65,32 @@
         <div class="basic-note-box__content"><%= @note.memo %></div>
       </div>
     </div>
+    <div class="note-show__bottom">
+      <div class="note-show__like flex">
+        <p class="note-show__like-text" id="xLikeText">
+          <% if current_user.liked_notes.exists?(@note.id) %>
+          いいねしたらコメントしよう
+          <% else %>
+          気に入ったらいいねしよう
+          <% end %>
+        </p>
+        <% if current_user.liked_notes.exists?(@note.id) %>
+        <button class="note-show__like-button" id="xDestroyLikeButton">
+          <i class="fa-solid fa-heart" style="color: #ff565d;"></i>
+          <span class="note-show__like-count"><%= @note.likes.count %></span>
+        </button>
+        <% else %>
+        <button class="note-show__like-button" id="xLikeButton">
+          <i class="fa-regular fa-heart note-show__like-icon"></i>
+          <span class="note-show__like-count"><%= @note.likes.count %></span>
+        </button>
+        <% end %>
+      </div>
+      <%= form_with url: note_like_path(@note), html: { id: 'xLikeForm' }, local: true do |f| %>
+      <% end %>
+      <%= form_with url: note_like_path(@note), html: { id: 'xDestroyLikeForm' }, method: :delete, local: true do |f| %>
+      <% end %>
+    </div>
   </div>
 </div>
 
@@ -81,4 +107,24 @@
   cancelButton.addEventListener('click', function() {
     dialog.close();
   })
+
+  // いいね
+  const likeButton = document.getElementById("xLikeButton");
+  const likeForm = document.getElementById("xLikeForm");
+
+  if(likeButton){
+    likeButton.addEventListener("click", function () {
+      likeForm.submit();
+    });
+  }
+
+  // いいねを削除
+  const destroyLikeButton = document.getElementById("xDestroyLikeButton");
+  const destroyLikeForm = document.getElementById("xDestroyLikeForm");
+
+  if(destroyLikeButton){
+    destroyLikeButton.addEventListener("click", function () {
+      destroyLikeForm.submit();
+    });
+  }
 </script>

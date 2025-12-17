@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_23_104215) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_17_071402) do
   create_table "action_plans", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "detail", default: "", null: false
@@ -45,6 +45,16 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_23_104215) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_books_on_user_id"
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "note_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["note_id"], name: "index_likes_on_note_id"
+    t.index ["user_id", "note_id"], name: "index_likes_on_user_id_and_note_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -84,6 +94,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_23_104215) do
   add_foreign_key "book_authors", "authors"
   add_foreign_key "book_authors", "books"
   add_foreign_key "books", "users"
+  add_foreign_key "likes", "notes"
+  add_foreign_key "likes", "users"
   add_foreign_key "notes", "books"
   add_foreign_key "points", "notes"
 end

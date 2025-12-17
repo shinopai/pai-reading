@@ -6,6 +6,8 @@ class Note < ApplicationRecord
   has_many :action_plans, dependent: :destroy
   accepts_nested_attributes_for :action_plans, allow_destroy: true
   validates_associated :action_plans
+  has_many :likes, dependent: :destroy
+  has_many :liked_users, through: :likes, source: :user
 
   # バリデーション
     with_options presence: true do

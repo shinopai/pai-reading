@@ -221,3 +221,29 @@
     margin-top: 0.4em;
   }
 }
+.note-show__bottom {
+  margin-top: 25px;
+}
+.note-show__like {
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+}
+.note-show__text {
+  @include m.font-set(16) {
+    font-weight: bold;
+  }
+}
+.note-show__like-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.note-show__like-icon {
+}
+.note-show__like-count {
+  @include m.font-set(16) {
+    font-weight: bold;
+  }
+}

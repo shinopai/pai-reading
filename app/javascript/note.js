@@ -293,8 +293,3 @@ window.removeActionListItem = function (element) {
     createActionHidden(actionItems.length);
   }
 };
-
-// バリデーションエラー後にrenderされた時
-document.addEventListener("turbo:render", () => {
-  console.log("renderされたよ");
-});

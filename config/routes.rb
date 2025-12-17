@@ -31,12 +31,14 @@ Rails.application.routes.draw do
     resources :notes
   end
 
-  # 各ユーザーに紐づいた
-
-
   # ゲストログイン
   post	'/users/guest_sign_in', to: 'guests#guest_sign_in', as: :guest_session
 
   # マイページ
   resources :mypages, :path => "mypage"
+
+  # いいね
+  resources :notes do
+    resource :like, only: [:create, :destroy]
+  end
 end
