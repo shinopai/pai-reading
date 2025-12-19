@@ -15,3 +15,5 @@ ja:
         description: 説明
       action_plan:
         detail: 詳細
+      comment:
+        body: 内容

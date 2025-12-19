@@ -50,7 +50,7 @@
               <h3 class="book-show__note-name">
                 <%= @book.user.name %>さんのノート
               </h3>
-              <span class="book-show__note-like">0</span>
+              <span class="book-show__note-like"><%= note.likes.count %></span>
             </div>
             <ul class="book-show__note-points">
               <li class="book-show__note-points-item">

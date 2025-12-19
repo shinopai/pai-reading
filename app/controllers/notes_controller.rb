@@ -82,6 +82,9 @@ class NotesController < ApplicationController
   end
 
   def show
+    @comments = @note.comments.includes(:user)
+    @comment  = Comment.new
+
     render :show
   end
 

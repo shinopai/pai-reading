@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :liked_notes, through: :likes, source: :note
+  has_many :comments, dependent: :destroy
+  has_many :commented_notes, through: :comments, source: :note
 
   # nameのバリデーション
   validates :name, presence: true,

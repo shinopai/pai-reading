@@ -41,4 +41,9 @@ Rails.application.routes.draw do
   resources :notes do
     resource :like, only: [:create, :destroy]
   end
+
+  # コメント
+  resources :notes do
+    resources :comments, only: [:create, :destroy]
+  end
 end
