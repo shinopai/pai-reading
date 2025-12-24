@@ -14,7 +14,7 @@
   &.center {
     text-align: center;
   }
-  &:not(.first) {
+  & + & {
     margin-top: 20px;
   }
 }
@@ -27,7 +27,7 @@
 }
 .auth__input {
   width: 100%;
-  height: 38px;
+  min-height: 38px;
   border: 1.5px solid v.$color-gray;
   @include m.font-set(16) {
     font-weight: bold;
@@ -48,6 +48,7 @@
   width: fit-content;
   margin-left: auto;
   position: relative;
+  // requires Font Awesome
   &::before {
     content: "\f2f6";
     font-family: "Font Awesome 7 Free";

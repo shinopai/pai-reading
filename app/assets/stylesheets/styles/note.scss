@@ -1,13 +1,14 @@
 @use "../modules/mixins" as m;
 @use "../modules/variables" as v;
 
-/* 共通部分 */
-.basic-note-box {
+/* プレイスホルダー */
+%box-frame {
   border: 1px solid v.$color-gray;
   overflow: hidden;
   border-radius: 10px;
 }
-.basic-note-box__title {
+
+%note-title {
   @include m.font-set(20) {
     font-weight: bold;
   }
@@ -16,6 +17,14 @@
   display: block;
   padding: 0.3em 0;
   text-align: center;
+}
+
+/* 共通部分 */
+.basic-note-box {
+  @extend %box-frame;
+}
+.basic-note-box__title {
+  @extend %note-title;
 }
 .basic-note-box__content {
   @include m.font-set(14) {
@@ -40,10 +49,8 @@
   margin-top: 30px;
 }
 .note-update__form-item {
-  border: 1px solid v.$color-gray;
-  overflow: hidden;
-  border-radius: 10px;
-  &:not(.first) {
+  @extend %box-frame;
+  & + & {
     margin-top: 25px;
   }
 }
@@ -59,14 +66,7 @@
   margin: 0.3em 0;
 }
 .note-update__title {
-  @include m.font-set(20) {
-    font-weight: bold;
-  }
-  background-color: v.$color-blue;
-  color: #fff;
-  display: block;
-  padding: 0.3em 0;
-  text-align: center;
+  @extend %note-title;
 }
 .note-update__label {
   @include m.font-set(16) {
@@ -120,7 +120,7 @@
     border-bottom: none;
     margin-top: 0 !important;
   }
-  &:not(:first-child) {
+  & + & {
     margin-top: 30px;
   }
 }
@@ -201,7 +201,7 @@
   margin-top: 50px;
 }
 .note-show__box {
-  &:not(.first) {
+  & + & {
     margin-top: 25px;
   }
 }
@@ -217,7 +217,7 @@
   margin-top: 1em;
 }
 .note-show__list-item {
-  &:not(:first-child) {
+  & + & {
     margin-top: 0.4em;
   }
 }
@@ -278,7 +278,7 @@
   background-color: #ececec;
   border-radius: 5px;
   padding: 10px;
-  &:not(:first-child) {
+  & + & {
     margin-top: 25px;
   }
 }

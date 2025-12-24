@@ -93,7 +93,7 @@ class BooksController < ApplicationController
   end
 
   def get_books
-    @books = Book.all
+    @books = Book.all.order(id: "desc")
   end
 
   def find_book

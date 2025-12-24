@@ -1,11 +1,6 @@
 <%# スタイル %>
 <%= stylesheet_link_tag 'styles/book' %>
 
-<%# スクリプト %>
-<% content_for :js do %>
-<%= javascript_import_module_tag "book" %>
-<% end %>
-
 <div class="book-show main">
   <div class="wrap">
     <div class="book-show__data flex">
@@ -13,28 +8,48 @@
         <%= image_tag @book.image_link, alt: @book.title %>
       </figure>
       <div class="book-show__detail">
-      <h2 class="book-show__title"><%= @book.title %></h2>
-      <ul class="book-show__authors flex">
-            <% if @book.authors.any? %>
+        <h2 class="book-show__title"><%= @book.title %></h2>
+        <ul class="book-show__authors flex">
+          <% if @book.authors.any? %>
             <% @book.authors.each_with_index do |author, index| %>
-            <li class="book-show__authors-item">
-              <% if index == @book.authors.size - 1 %>
-              <%= author.name %>
-              <% else %>
-              <%= author.name %>,&nbsp;
-              <% end %>
-            </li>
+              <li class="book-show__authors-item">
+                <% if index == @book.authors.size - 1 %>
+                  <%= author.name %>
+                <% else %>
+                  <%= author.name %>,&nbsp;
+                <% end %>
+              </li>
             <% end %>
-            <% else %>
+          <% else %>
             <li class="book-show__authors-item">著者なし</li>
-            <% end %>
-          </ul>
-          </div>
+          <% end %>
+        </ul>
+      </div>
     </div>
     <div class="book-show__buttons flex">
-      <button type="button" class="book-show__button basic-button amazon">Amazon</button>
-      <%= button_to "登録を解除", book_path(@book), method: :delete, class: 'book-show__button basic-button destroy', id: 'xDestroyButton', form: { class: 'book-show__form', id: 'xForm' } %>
-      <%= link_to 'ノート作成', new_book_note_path(@book), class: 'book-show__button basic-button' %>
+      <button type="button" class="book-show__button basic-button amazon">
+        Amazon
+      </button>
+      <%=
+        button_to '登録を解除',
+                  book_path(@book),
+                  method: :delete,
+                  class: 'book-show__button basic-button destroy',
+                  id: 'xDestroyButton',
+                  form: {
+                    class: 'book-show__form',
+                    id: 'xDestroyForm',
+                    data: {
+                      controller: 'book',
+                      action: 'book#destroy',
+                    },
+                  }
+      %>
+      <%=
+        link_to 'ノート作成',
+                new_book_note_path(@book),
+                class: 'book-show__button basic-button'
+      %>
     </div>
     <div class="book-show__note">
       <h3 class="book-show__note-title">
@@ -43,30 +58,34 @@
       <div class="book-show__note-list">
         <h3 class="book-show__note-heading">ノート一覧</h3>
         <% if @book.notes.any? %>
-        <% @book.notes.each do |note| %>
-        <%= link_to book_note_path(@book, note), class: 'contents' do %>
-          <div class="book-show__note-box">
-            <div class="book-show__note-head flex">
-              <h3 class="book-show__note-name">
-                <%= @book.user.name %>さんのノート
-              </h3>
-              <span class="book-show__note-like"><%= note.likes.count %></span>
-            </div>
-            <ul class="book-show__note-points">
-              <li class="book-show__note-points-item">
-              <% @book.notes.each do |note| %>
-              <% note.points.each_with_index do |point, index| %>
-                <h3 class="book-show__note-points-title">
-                  <%= index + 1 %>.&nbsp;<%= point.title %>
-                </h3>
-                <p class="book-show__note-points-desc"><%= point.description %></p>
-              <% end %>
-              <% end %>
-              </li>
-            </ul>
-          </div>
+          <% @book.notes.each do |note| %>
+            <%= link_to book_note_path(@book, note), class: 'contents' do %>
+              <div class="book-show__note-box">
+                <div class="book-show__note-head flex">
+                  <h3 class="book-show__note-name">
+                    <%= @book.user.name %>さんのノート
+                  </h3>
+                  <span class="book-show__note-like"><%=
+                      note.likes.count
+                    %></span>
+                </div>
+                <ul class="book-show__note-points">
+                  <li class="book-show__note-points-item">
+                    <% @book.notes.each do |note| %>
+                      <% note.points.each_with_index do |point, index| %>
+                        <h3 class="book-show__note-points-title">
+                          <%= index + 1 %>.&nbsp;<%= point.title %>
+                        </h3>
+                        <p class="book-show__note-points-desc">
+                          <%= point.description %>
+                        </p>
+                      <% end %>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
         <% else %>
           <p class="book-show__note-text">ノートはありません</p>
         <% end %>

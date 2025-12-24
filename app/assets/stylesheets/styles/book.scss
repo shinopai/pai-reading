@@ -8,7 +8,7 @@
 }
 .book__button {
   width: min(100%, 200px);
-  height: 35px;
+  min-height: 35px;
   background-color: v.$color-blue;
   @include m.font-set(16);
   color: #fff;
@@ -147,7 +147,7 @@
 }
 .book-new__dialog-button {
   width: 45%;
-  height: 40px;
+  min-height: 40px;
   margin: 0;
   cursor: pointer;
   border: none;
@@ -238,6 +238,7 @@
   }
   color: v.$color-gray-font;
   position: relative;
+  // requires Font Awesome
   &::before {
     font-family: "Font Awesome 7 Free";
     font-size: 0.7em;

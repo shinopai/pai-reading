@@ -1,35 +1,55 @@
 <%# スタイル %>
 <%= stylesheet_link_tag 'styles/note' %>
 
-<div class="note-show main">
+<div class="note-show main" data-controller="note">
   <div class="wrap">
     <div class="note-show__head flex">
       <div class="note-show__head-item">
-        <%= link_to 'ノート一覧へ戻る', book_path(@book), class: 'note-show__link' %>
-        <p class="note-show__text">
-          <%= current_user.name %>さんのページ
-        </p>
+        <%=
+          link_to 'ノート一覧へ戻る', book_path(@book), class: 'note-show__link'
+        %>
+        <p class="note-show__text"><%= current_user.name %>さんのページ</p>
       </div>
       <div class="note-show__head-item flex">
         <%= link_to edit_book_note_path(@book, @note), class: 'contents' do %>
-        <i class="fa-solid fa-pen-to-square note-show__icon" style="color: #269bf4;"></i>
+          <i
+            class="fa-solid fa-pen-to-square note-show__icon"
+            style="color: #269bf4;"
+          ></i>
         <% end %>
-        <i class="fa-solid fa-trash note-show__icon" id="xDestroyIcon" style="color: #269bf4;" data-controller="destroy-icon" data-action="click->destroy-icon#show"></i>
+        <i
+          class="fa-solid fa-trash note-show__icon"
+          id="xDestroyIcon"
+          style="color: #269bf4;"
+          data-action="click->note#show"
+        ></i>
       </div>
     </div>
-    <dialog class="note-show__dialog" id="xDialog">
+    <dialog class="note-show__dialog" data-note-target="dialog">
       <p class="note-show__dialog-text">本当に削除しますか？</p>
       <%= form_with url: book_note_path(@book, @note), class: 'note-show__dialog-form', method: :delete do |f| %>
-      <div class="note-show__buttons flex">
-        <%= button_tag 'キャンセル', type: 'button', class: 'note-show__dialog-button', id: "xCancelButton", data: { controller: "destroy-icon", action: "click->destroy-icon#close" } %>
-        <%= button_tag '削除する', type: 'submit', class: 'note-show__dialog-button' %>
-      </div>
+        <div class="note-show__buttons flex">
+          <%=
+            button_tag 'キャンセル',
+                       type: 'button',
+                       class: 'note-show__dialog-button',
+                       id: 'xCancelButton',
+                       data: {
+                         action: 'click->note#close',
+                       }
+          %>
+          <%=
+            button_tag '削除する',
+                       type: 'submit',
+                       class: 'note-show__dialog-button'
+          %>
+        </div>
       <% end %>
     </dialog>
     <h2 class="note-show__title"><%= @book.title %></h2>
     <h3 class="note-show__author">ノート作者:<%= current_user.name %></h3>
     <div class="note-show__main">
-      <div class="note-show__box first basic-note-box">
+      <div class="note-show__box basic-note-box">
         <h3 class="basic-note-box__title">読む目的</h3>
         <div class="basic-note-box__content"><%= @note.purpose %></div>
       </div>
@@ -38,8 +58,8 @@
         <div class="basic-note-box__content">
           <dl class="note-show__list">
             <% @note.points.each do |point| %>
-            <dt class="note-show__list-title"><%= point.title %></dt>
-            <dd class="note-show__list-desc"><%= point.description %></dd>
+              <dt class="note-show__list-title"><%= point.title %></dt>
+              <dd class="note-show__list-desc"><%= point.description %></dd>
             <% end %>
           </dl>
         </div>
@@ -53,9 +73,9 @@
         <div class="basic-note-box__content">
           <ul class="note-show__list">
             <% @note.action_plans.each do |action_plan| %>
-            <li class="note-show__list-item">
-              &bull;&nbsp;<%= action_plan.detail %>
-            </li>
+              <li class="note-show__list-item">
+                &bull;&nbsp;<%= action_plan.detail %>
+              </li>
             <% end %>
           </ul>
         </div>
@@ -69,21 +89,29 @@
       <div class="note-show__like flex">
         <p class="note-show__like-text" id="xLikeText">
           <% if current_user.liked_notes.exists?(@note.id) %>
-          いいねしたらコメントしよう
+            いいねしたらコメントしよう
           <% else %>
-          気に入ったらいいねしよう
+            気に入ったらいいねしよう
           <% end %>
         </p>
         <% if current_user.liked_notes.exists?(@note.id) %>
-        <button class="note-show__like-button" data-controller="like" data-action="click->like#destroy">
-          <i class="fa-solid fa-heart" style="color: #ff565d;"></i>
-          <span class="note-show__like-count"><%= @note.likes.count %></span>
-        </button>
+          <button
+            class="note-show__like-button"
+            data-controller="like"
+            data-action="click->like#destroy"
+          >
+            <i class="fa-solid fa-heart" style="color: #ff565d;"></i>
+            <span class="note-show__like-count"><%= @note.likes.count %></span>
+          </button>
         <% else %>
-        <button class="note-show__like-button" data-controller="like" data-action="click->like#create">
-          <i class="fa-regular fa-heart note-show__like-icon"></i>
-          <span class="note-show__like-count"><%= @note.likes.count %></span>
-        </button>
+          <button
+            class="note-show__like-button"
+            data-controller="like"
+            data-action="click->like#create"
+          >
+            <i class="fa-regular fa-heart note-show__like-icon"></i>
+            <span class="note-show__like-count"><%= @note.likes.count %></span>
+          </button>
         <% end %>
       </div>
       <%= form_with url: note_like_path(@note), html: { id: 'xLikeForm' }, local: true do |f| %>
@@ -92,27 +120,33 @@
       <% end %>
       <div class="note-show__comment">
         <%= form_with model: [@note, @comment], html: { class: 'note-show__comment-form', id: 'xCommentForm' }, local: true do |f| %>
-        <% if @comment.errors.any? %>
-        <ul class="error__list">
-          <% @comment.errors.full_messages.each do |message| %>
-            <li class="error__item"><%= message %></li>
+          <% if @comment.errors.any? %>
+            <ul class="error__list">
+              <% @comment.errors.full_messages.each do |message| %>
+                <li class="error__item"><%= message %></li>
+              <% end %>
+            </ul>
           <% end %>
-        </ul>
-          <% end %>
-        <%= f.textarea :body, class: 'note-show__comment-textarea', placeholder: 'コメントを入力してください' %>
-        <%= f.submit '送信', class: 'note-show__comment-submit basic-button' %>
+          <%=
+            f.textarea :body,
+                       class: 'note-show__comment-textarea',
+                       placeholder: 'コメントを入力してください'
+          %>
+          <%=
+            f.submit '送信', class: 'note-show__comment-submit basic-button'
+          %>
         <% end %>
         <% if @comments.any? %>
-        <h3 class="note-show__comment-heading">コメント一覧</h3>
+          <h3 class="note-show__comment-heading">コメント一覧</h3>
           <ul class="note-show__comment-list">
             <% @comments.each do |comment| %>
-            <li class="note-show__comment-item">
-              <p class="note-show__comment-body"><%= comment.body %></p>
-              <p class="note-show__comment-info">
-                <%= comment.user.name %>&nbsp;
-                <%= comment.created_at.strftime("%Y年%m月%d日") %>
-              </p>
-            </li>
+              <li class="note-show__comment-item">
+                <p class="note-show__comment-body"><%= comment.body %></p>
+                <p class="note-show__comment-info">
+                  <%= comment.user.name %>&nbsp;
+                  <%= comment.created_at.strftime('%Y年%m月%d日') %>
+                </p>
+              </li>
             <% end %>
           </ul>
         <% end %>
@@ -122,18 +156,18 @@
 </div>
 
 <script>
-document.getElementById('xCommentForm').addEventListener("submit", () => {
-  sessionStorage.setItem('scrollPosition', window.scrollY);
-});
+  document.getElementById("xCommentForm").addEventListener("submit", () => {
+    sessionStorage.setItem("scrollPosition", window.scrollY);
+  });
 
-document.addEventListener('turbo:render', function() {
-  const savedPosition = sessionStorage.getItem('scrollPosition');
+  document.addEventListener("turbo:render", function () {
+    const savedPosition = sessionStorage.getItem("scrollPosition");
 
-  if (savedPosition) {
-    requestAnimationFrame(() => {
-    window.scrollTo(0, parseInt(savedPosition, 10));
-    });
-    sessionStorage.removeItem('scrollPosition'); // 一度使ったら削除
-  }
-});
+    if (savedPosition) {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, parseInt(savedPosition, 10));
+      });
+      sessionStorage.removeItem("scrollPosition"); // 一度使ったら削除
+    }
+  });
 </script>
