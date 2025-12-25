@@ -12,12 +12,7 @@
       </div>
       <div class="auth__item">
         <%= f.label :email, 'Eメール', class: 'auth__label' %><br />
-        <%=
-          f.email_field :email,
-                        autofocus: true,
-                        autocomplete: 'email',
-                        class: 'auth__input'
-        %>
+        <%= f.email_field :email, autocomplete: 'email', class: 'auth__input' %>
       </div>
       <div class="auth__item">
         <%= f.label :password, 'パスワード', class: 'auth__label' %>
