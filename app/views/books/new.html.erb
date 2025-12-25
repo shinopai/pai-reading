@@ -86,7 +86,7 @@
                       </div>
                     </div>
                   </div>
-                  <%= form_with model: @book, url: books_path, class: 'book-new__dialog-form', data: { turbo: false }, local: :true do |book_f| %>
+                  <%= form_with model: @book, url: books_path, class: 'book-new__dialog-form', local: :true do |book_f| %>
                     <%=
                       book_f.hidden_field :title,
                                           value: book['volumeInfo']['title']

@@ -92,5 +92,5 @@ Rails.application.configure do
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
   # 本番環境でエラーメッセージを画面に出力させる
-  consider_all_requests_local = true
+  # consider_all_requests_local = true
 end
